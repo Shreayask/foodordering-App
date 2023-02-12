@@ -1,6 +1,13 @@
-
-
+// const router = express.Router();
 const { knex } = require('../config/db/index');
+
+// import express from 'express'
+// const router = express.Router;
+
+// const express = require('express');
+import { Request, Response, } from 'express';
+// const Request = express.Request;
+// const Response = express.Response;
 
 /**
  * Controller to place order
@@ -8,11 +15,22 @@ const { knex } = require('../config/db/index');
  * @param {*} req - request user info and cart items from the body
  * @param {*} res - response user with suceess or failure message
  */
-exports.placeOrder = async (req, res) => {
-    const { checkoutInfo, user, cartItems } = req.body;
+interface checkoutInfoInterface {
+    phoneNumber:number,
+    shippingAddress:String,
+    message:String
+}
+
+
+exports.placeOrder = async (req:Request, res:Response):Promise<void>=> {
+    const { checkoutInfo, user, cartItems } = req.body as {
+        checkoutInfo: any;
+        user: any[];
+        cartItems: any[];
+      };
     const User = user[0]
     try {
-       
+        // const order = req.body
         const insertedOrder = await knex('orders')
             .insert({
                 userid: user[0].id,
@@ -27,7 +45,7 @@ exports.placeOrder = async (req, res) => {
 
         const orderid = insertedOrder[0].id;
         const amountPaid = insertedOrder[0].orderAmount
-         await knex('payment')
+        await knex('payment')
             .insert({
                 userid: User.id,
                 orderid: orderid,
@@ -54,7 +72,7 @@ exports.placeOrder = async (req, res) => {
  * @param {*} req - request user's information
  * @param {*} res - response users order
  */
-exports.getUserOrder = async (req, res) => {
+exports.getUserOrder = async (req:Request, res:Response):Promise<void> => {
 
     const user = req.body;
 
@@ -81,7 +99,7 @@ exports.getUserOrder = async (req, res) => {
  * @param {*} req 
  * @param {*} res - response with every user orders
  */
-exports.getAllUserOrders = async (req, res) => {
+exports.getAllUserOrders = async ( req:Request,res:Response):Promise<void> => {
 
     try {
         const orders = await knex.select("*")
