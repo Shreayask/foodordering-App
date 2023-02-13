@@ -41,7 +41,7 @@ exports.registerUser = async (req:Request, res:Response):Promise<void> => {
         const user: User[]= await knex(USER_TABLE_NAME)
             .where({ email });
 
-        if (!user) {
+        if (user) {
             const insertedUser: User[] = await knex(USER_TABLE_NAME)
                 .insert({ name, email, password })
                 .returning("*");

@@ -7,7 +7,7 @@ import { logoutUser } from "../actions/userAction";
 
 import type { RootState, AppDispatch } from '../store';
 
-const Topbar = () => {
+const Topbar: React.FC = () => {
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
