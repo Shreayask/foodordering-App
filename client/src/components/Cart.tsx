@@ -6,7 +6,6 @@ import { addToCart, deleteFromCart } from "../actions/cartAction";
 import type { RootState, AppDispatch } from '../store';
 
 
-
 // type interface for items
 interface itemInterface {
 
