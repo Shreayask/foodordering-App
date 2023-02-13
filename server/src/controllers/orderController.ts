@@ -15,11 +15,11 @@ import { Request, Response, } from 'express';
  * @param {*} req - request user info and cart items from the body
  * @param {*} res - response user with suceess or failure message
  */
-interface checkoutInfoInterface {
-    phoneNumber:number,
-    shippingAddress:String,
-    message:String
-}
+// interface checkoutInfoInterface {
+//     phoneNumber:number,
+//     shippingAddress:String,
+//     message:String
+// }
 
 
 exports.placeOrder = async (req:Request, res:Response):Promise<void>=> {

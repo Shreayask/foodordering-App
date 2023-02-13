@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../actions/userAction";
 import type { RootState, AppDispatch } from '../store';
 // Registration form for new users
-const Register : React.FC= () => {
+const Register: React.FC = () => {
   const [name, setName] = useState<string>(""); //State for storing name of the user
   const [email, setEmail] = useState<string>(""); //State for storing email of the user
   const [password, setPassword] = useState<string>(""); //state for storing password of user
@@ -14,7 +14,7 @@ const Register : React.FC= () => {
 
   const dispatch: AppDispatch = useDispatch(); //Initializing useDispatch() func
 
-  const registerHandler = (e : React.MouseEvent) => {
+  const registerHandler = (e: React.MouseEvent) => {
     // Event handle for submitting form
     e.preventDefault();
     if (password !== confirmPassword) {
