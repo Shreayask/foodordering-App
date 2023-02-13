@@ -1,22 +1,38 @@
 import React, { useEffect } from "react";
 import SideBar from "../../screens/admin/SideBar";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getAllOrders } from "../../actions/orderAction";
-import Loader from "./../Loader";
-import Error from "./../Error";
+import Loader from "../Loader";
+import Error from "../Error";
 
-const AllOrder = () => {
-  const allOrdersState = useSelector((state) => state.allUserOrdersReducer);
-  const { loading, orders, error } = allOrdersState;
-  const dispatch = useDispatch();
+import type { RootState, AppDispatch } from '../../store';
+
+interface OrderInterface {
+  id: string;
+  orderAmount: number;
+  shippingAddress: string;
+  phoneNumber: string;
+  message: string;
+  created_at: string;
+  isDelivered: boolean;
+  isPaid: boolean;
+}
+
+const AllOrder: React.FC = () => {
+  const allOrdersState = useSelector((state: RootState) => state.allUserOrdersReducer);
+  const { loading, orders, error } = allOrdersState as {
+    loading: any,
+    orders: OrderInterface[];
+    error: any
+  };
+  const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllOrders());
   }, [dispatch]);
 
   return (
     <div style={{ marginTop: "5rem", marginBottom: "5rem" }}>
-      <div class="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c" }} >
+      <div className="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c" }}>
         <h3
           className="text-center bg-dark text-light   p-2 "
           style={{ width: "100%", margin: "auto" }}
@@ -24,13 +40,13 @@ const AllOrder = () => {
           Admin Panel
         </h3>
 
-        <div class="row mt-1">
+        <div className="row mt-1">
           <SideBar />
           {loading && <Loader />}
           {error && <Error error="Admin order request fail" />}
-          <div class="col-9 col-lg-9 col-md-9 col-sm-9">
+          <div className="col-9 col-lg-9 col-md-9 col-sm-9">
             <div
-              class="mt-2 "
+              className="mt-2 "
               style={{
                 padding: "0px",
                 margin: "auto",
@@ -38,7 +54,7 @@ const AllOrder = () => {
                 overflow: "auto",
               }}
             >
-              <table class="table ">
+              <table className="table ">
                 <thead>
                   <tr>
                     <th scope="col">Order Id</th>

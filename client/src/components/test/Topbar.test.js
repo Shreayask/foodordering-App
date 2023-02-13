@@ -81,7 +81,7 @@ describe("<Topbar />", () => {
         // Assert that location has changed to the home page 
         expect(window.location.pathname).toBe("/login");
     })
- 
+
     it('Register link', () => {
         const { container } = render(
             <Provider store={store}>
@@ -117,7 +117,7 @@ describe("<Topbar />", () => {
     })
 
     it('Cart  link', () => {
-       
+
         const { container } = render(
             <Provider store={store}>
                 <BrowserRouter>

@@ -1,20 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// const express = require('express');
+// const router = express.Router();
 const { knex } = require('../config/db/index');
 //  Inserting a Pizza
 const PIZZA_TABLE_NAME = "pizzas";
-// 
-/**
- * Controller to insert pizza in the database --by admin
- *
- * @param {*} req - request pizza data from body
- * @param {*} res - response by inserting pizza in the database
- */
 exports.insertPizza = async (req, res) => {
     const { pizza } = req.body;
-    console.log("body", pizza);
     try {
-        console.log('json data', JSON.stringify(pizza.prices));
         const insertedPizza = await knex('pizzas')
             .insert({
             name: pizza.name,
@@ -25,10 +18,7 @@ exports.insertPizza = async (req, res) => {
             prices: [pizza.prices]
         })
             .returning("*");
-        console.log('inserted', insertedPizza);
-        console.log('prices', insertedPizza[0].prices[0].medium);
-        console.log('varis', insertedPizza[0].varients[1]);
-        res.status(201).send('New Pizza added');
+        res.status(201).json(insertedPizza);
     }
     catch (error) {
         res.json({ message: error });
@@ -52,6 +42,17 @@ exports.getAllPizza = async (req, res) => {
         res.status(404).json({ message: error.stack });
     }
 };
+exports.getPizzaById = async (req, res) => {
+    const pizzaId = req.body.pizzaId;
+    try {
+        const pizza = await knex('pizzas')
+            .where({ id: pizzaId });
+        res.send(pizza);
+    }
+    catch (err) {
+        res.json({ message: err });
+    }
+};
 /**
  * Contoller to update pizza inside the database
  *
@@ -60,8 +61,8 @@ exports.getAllPizza = async (req, res) => {
  */
 exports.updatePizza = async (req, res) => {
     const updatedPizza = req.body.updatedPizza;
-    console.log('hiii', req.body);
-    console.log(updatedPizza);
+    // const { id } = req.params;
+    // console.log('hii', updatedPizza)
     // const pizza = req.body;
     try {
         const pizza = await knex('pizzas')
@@ -75,7 +76,6 @@ exports.updatePizza = async (req, res) => {
             prices: [updatedPizza.prices]
         })
             .returning("*");
-        console.log('pizza update', pizza);
         res.status(200).send(pizza);
     }
     catch (err) {
