@@ -5,7 +5,7 @@ import { HiMinusCircle, HiPlusCircle, HiTrash } from "react-icons/hi";
 import { addToCart, deleteFromCart } from "../actions/cartAction";
 import type { RootState, AppDispatch } from '../store';
 
-{/**  Dipalying items added to  cart by users */ }
+
 
 // type interface for items
 interface itemInterface {
