@@ -92,7 +92,7 @@ exports.getPizzaById = async (req:Request, res:Response) => {
  */
 
 exports.updatePizza = async (req:Request, res:Response):Promise<void> => {
-    const updatedPizza = req.body.updatedPizza;
+    const updatedPizza  = req.body.updatedPizza 
     // const { id } = req.params;
     // console.log('hii', updatedPizza)
     // const pizza = req.body;

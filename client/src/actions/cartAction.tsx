@@ -1,4 +1,6 @@
 import type { RootState, AppDispatch } from '../store';
+
+// Interface type of pizza
 interface Ipizza {
     id: string,
     name: string,

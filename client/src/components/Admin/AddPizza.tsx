@@ -8,6 +8,18 @@ import Success from "../Success";
 
 import type { RootState, AppDispatch } from '../../store';
 
+interface pizzaI{
+  name:String,
+
+  prices:{
+  small:number | undefined,
+  medium:number |undefined,
+  large:number |undefined}[],
+  category:String,
+  image:String,
+  description:String
+  }
+  
 
 const AddPizza: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -25,16 +37,16 @@ const AddPizza: React.FC = () => {
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const pizza = {
+    const pizza:pizzaI = {
       name,
       image,
       description,
       category,
-      prices: {
+      prices: [{
         small: smallPrice,
         medium: mediumPrice,
         large: largePrice,
-      },
+      }],
     };
     dispatch(addPizza(pizza));
   };

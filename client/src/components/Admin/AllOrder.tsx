@@ -52,6 +52,7 @@ const AllOrder: React.FC = () => {
                 margin: "auto",
                 height: "70vh",
                 overflow: "auto",
+                overflowX: "auto"
               }}
             >
               <table className="table ">

@@ -53,7 +53,7 @@ const SideBar: React.FC = () => {
             className="btn btn-dark"
             style={{ border: "1px solid grey", borderRadius: "0px" }}
           >
-            View Orders
+            View Order
           </button>
         </div>
       </div>

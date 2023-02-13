@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../actions/userAction";
+import {loginUser}  from "../actions/userAction";
 import type { RootState, AppDispatch } from '../store';
 
+//type interface for user
+interface User {
 
+  email: string,
+  password:string
+
+}
 // login form for users and admin
 
 const Login : React.FC = () => {
@@ -17,7 +23,7 @@ const Login : React.FC = () => {
   const loginHandler = (e : React.MouseEvent) :void => {
     // Event handle for submitting user email & password
     e.preventDefault();
-    const user = { email, password };
+    const user:User = { email, password };
     //console.log(user);
     dispatch(loginUser(user));
   };
@@ -25,8 +31,8 @@ const Login : React.FC = () => {
 
   return (
     <>
-      <div className="container mt-5 pt-5">
-        <div className="LoginSignUpContainer mt-4">
+      <div className="container  pt-0">
+        <div className="LoginSignUpContainer ">
           <div className="LoginSignUpBox">
             <form className="loginForm">
               <div className="logininput">
