@@ -3,16 +3,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/cartAction";
 import "./css/pizza.css";
 
+import type { RootState, AppDispatch } from '../store';
+
+interface Ipizza {
+  id: string,
+  name: string,
+  image: string,
+  quantity: number,
+  varients: string[],
+  prices: any[],
+  pizza: number,
+  description: string,
+  varient: string
+
+}
+
+interface props {
+  pizza: Ipizza
+}
 
 // component Diplaying a pizza
-const Pizza = ({ pizza }) => {
-  const [varient, setVarient] = useState("small"); //State to set value of varient as small by default
-  const [quantity, setQuantity] = useState(1); //state to set quantity as 1 by default
-  const [show, setshow] = useState(false);// state to set show as false by default
+const Pizza: React.FC<props> = (props) => {
+  const { pizza } = props
+  const [varient, setVarient] = useState<string>("small"); //State to set value of varient as small by default
+  const [quantity, setQuantity] = useState<number>(1); //state to set quantity as 1 by default
+  const [show, setshow] = useState<boolean>(false); // state to set show as false by default
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
-  // calling cart action 
+  // calling cart action
   const addToCartHandler = () => {
     dispatch(addToCart(pizza, quantity, varient));
   };
@@ -20,39 +39,37 @@ const Pizza = ({ pizza }) => {
   const handleClose = () => setshow(false);
   const handleShow = () => setshow(true);
   return (
-   
     <>
-     {/**  card diplaying Pizza */}
-      <div class="card" style={{}}>
-
+      {/**  card diplaying Pizza */}
+      <div className="card" style={{}}>
         {/** pizza image */}
         <img
           src={pizza.image}
-          class="card-img-top"
+          className="card-img-top"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           style={{ height: "150px", cursor: "pointer" }}
           alt=""
         />
-        <div class="card-body">
+        <div className="card-body">
           {/** pizza name and description */}
-          <h5 class="card-title">{pizza.name}</h5>
+          <h5 className="card-title">{pizza.name}</h5>
           <hr></hr>
-          <p class="card-text">
-            <div class="row">
-              <div class="col-6 ">
+          <p className="card-text">
+            <div className="row">
+              <div className="col-6 ">
                 <h6>Varient</h6>
                 <select onChange={(e) => setVarient(e.target.value)}>
                   {/* diplaying pizza types*/}
-                  {pizza.varients.map((varient) => (
+                  {pizza.varients.map((varient: string) => (
                     <option value={varient}> {varient}</option>
                   ))}
                 </select>
               </div>
-              <div class="col-6">
+              <div className="col-6">
                 {/** pizza quantity */}
                 <h6>Quantity</h6>
-                <select onChange={(e) => setQuantity(e.target.value)}>
+                <select onChange={(e) => setQuantity(Number(e.target.value))}>
                   {[...Array(10).keys()].map((v, i) => (
                     <option value={i + 1}>{i + 1}</option>
                   ))}
@@ -60,14 +77,13 @@ const Pizza = ({ pizza }) => {
               </div>
             </div>
           </p>
-          <div class="row">
-            <div class="col-6">
-                {/**  displaying pizza prices */}
+          <div className="row">
+            <div className="col-6">
+              {/**  displaying pizza prices */}
               Price : Rs {pizza.prices[0][varient] * quantity}{" "}
             </div>
-            <div class="col-6">
-
-                {/** Add to cart button */}
+            <div className="col-6">
+              {/** Add to cart button */}
               <button
                 type="button"
                 style={{
@@ -75,7 +91,7 @@ const Pizza = ({ pizza }) => {
                   fontSize: "13px",
                   fontWeight: "500",
                 }}
-                class="btn btn-warning"
+                className="btn btn-warning"
                 onClick={addToCartHandler}
               >
                 Add to cart
@@ -85,33 +101,32 @@ const Pizza = ({ pizza }) => {
         </div>
       </div>
 
-
-  {/** pop up to display pizza */}
+      {/** pop up to display pizza */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        // tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
                 {pizza.name}
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body ">
+            <div className="modal-body ">
               <div>
                 <img
                   src={pizza.image}
-                  class="card-img-top"
+                  className="card-img-top"
                   style={{ height: "150px", cursor: "pointer" }}
                   alt=""
                 />

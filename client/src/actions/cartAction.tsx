@@ -2,29 +2,31 @@ import type { RootState, AppDispatch } from '../store';
 
 // Interface type of pizza
 interface Ipizza {
-    id:string,
-    name:string,
-    image:string,
-    quantity:number,
-    prices:any[],
-    pizza:number
-
-}
-//interface for cart item
-interface cartI{
-    name: String,
-    id: String,
-    image: String,
-    varient: String,
-    quantity: Number,
+    id: string,
+    name: string,
+    image: string,
+    quantity: number,
+    varients: string[],
     prices: any[],
-    pizza: number
+    pizza: number,
+    description: string,
+    varient: string
+
+}
+interface itemInterface {
+
+    id: string,
+    name: string,
+    image: string,
+    quantity: number,
+    varient: string,
+    prices: any[],
+    pizza: number,
+    varients: string[]
 }
 
-//action for Adding pizzas to the cart by users
-export const addToCart = (pizza:Ipizza, quantity:number, varient:string) => (dispatch:AppDispatch, getState:RootState) => {
-   // cartItems
-    var cartItem :cartI= {
+export const addToCart = (pizza: itemInterface, quantity: number, varient: string) => (dispatch: AppDispatch, getState: RootState) => {
+    var cartItem = {
         name: pizza.name,
         id: pizza.id,
         image: pizza.image,
@@ -66,9 +68,7 @@ export const addToCart = (pizza:Ipizza, quantity:number, varient:string) => (dis
     }
 };
 
-
-//action for deleting pizzas from the cart by users
-export const deleteFromCart = (pizza:Ipizza) => (dispatch:AppDispatch, getState:RootState) => {
+export const deleteFromCart = (pizza: itemInterface) => (dispatch: AppDispatch, getState: RootState) => {
     dispatch({ type: "DELETE_FROM_CART", payload: pizza });
     localStorage.setItem(
         'cartItems',

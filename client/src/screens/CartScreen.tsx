@@ -7,23 +7,24 @@ import { Link } from "react-router-dom";
 
 
 // type interface for items
-interface itemInterface{
-    
-    id:string,
-    name:string,
-    image:string,
-    quantity:number,
-    varient:string,
-    prices:any[],
-    pizza:number
-  }
+interface itemInterface {
+
+    id: string,
+    name: string,
+    image: string,
+    quantity: number,
+    varient: string,
+    prices: any[],
+    pizza: number,
+    varients: string[]
+}
 const CartScreen: React.FC = () => {
     const cartState = useSelector((state: RootState) => state.cartReducer);
     const cartItems: itemInterface[] = cartState.cartItems;
-    const userState = useSelector((state:RootState) => state.loginUserReducer);
+    const userState = useSelector((state: RootState) => state.loginUserReducer);
     const { currentUser } = userState;
 
-    const subTotal :number= cartItems.reduce((x:number, item:itemInterface) => {
+    const subTotal: number = cartItems.reduce((x: number, item: itemInterface) => {
         return x + item.quantity * item.prices[0][item.varient];
     }, 0);
 
@@ -42,7 +43,7 @@ const CartScreen: React.FC = () => {
                         <h3 style={{ color: "rgb(67 74 68)", margin: "auto" }}>Cart Items</h3>
 
                         <div className="row  mt-3">
-                            {cartItems.map((item:itemInterface, index:number) => (
+                            {cartItems.map((item: itemInterface, index: number) => (
 
                                 <>
                                     <Cart item={item} index={index} />

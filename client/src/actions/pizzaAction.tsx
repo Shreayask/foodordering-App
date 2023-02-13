@@ -2,17 +2,32 @@ import axios from 'axios'
 import type { RootState, AppDispatch } from '../store';
 import { useNavigate } from "react-router-dom";
 
+
 interface pizzaI{
-name:String,
-varients:String[],
-prices:{
-small:number,
-medium:number,
-large:number}[],
-category:String,
-image:String,
-description:String
-}
+    name:String,
+    
+    prices:{
+    small:number | undefined,
+    medium:number |undefined,
+    large:number |undefined}[],
+    category:String,
+    image:String,
+    description:String
+    }
+interface pizzaUpdate{
+    
+    id: String | undefined,
+    name:string,
+    image:string,
+    description:string,
+    category:string,
+    prices: {
+      small: number |undefined,
+      medium: number|undefined,
+      large: number|undefined,
+    
+  }
+  }
 
 export const getAllPizzas = () => async (dispatch:AppDispatch):Promise<void> => {
     dispatch({ type: 'GET_PIZZAS_REQUEST' })
@@ -37,7 +52,7 @@ export const addPizza = (pizza:pizzaI) => async (dispatch:AppDispatch):Promise<v
         alert('Failed to add pizza.')
     }
 };
-export const getPizzaById = (pizzaId:string) => async (dispatch:AppDispatch) :Promise<void>=> {
+export const getPizzaById = (pizzaId:any) => async (dispatch:AppDispatch) :Promise<void>=> {
     dispatch({ type: 'GET_PIZZABYID_REQUEST' })
     try {
         const res = await axios.post('http://localhost:5000/api/pizzas/getpizzabyid', { pizzaId })
@@ -46,7 +61,7 @@ export const getPizzaById = (pizzaId:string) => async (dispatch:AppDispatch) :Pr
         dispatch({ type: 'GET_PIZZABYID_FAIL', payload: err })
     }
 };
-export const updatePizza = (updatedPizza:pizzaI) => async (dispatch:AppDispatch):Promise<void> => {
+export const updatePizza = (updatedPizza:any) => async (dispatch:AppDispatch):Promise<void> => {
     dispatch({ type: 'UPDATE_PIZZABYID_REQUEST' })
     
 const navigate= useNavigate() ;

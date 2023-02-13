@@ -9,7 +9,7 @@ exports.registerUser = async (req, res) => {
     try {
         const user = await knex(USER_TABLE_NAME)
             .where({ email });
-        if (!user) {
+        if (user) {
             const insertedUser = await knex(USER_TABLE_NAME)
                 .insert({ name, email, password })
                 .returning("*");

@@ -1,20 +1,53 @@
 import React, { useEffect } from "react";
 import { getUserOrders } from "../actions/orderAction";
 import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from '../store';
 import "./css/order.css";
 
-const OrderScreen = () => {
-  const orderState = useSelector((state) => state.getUserOrdersReducer);
-  const userState = useSelector((state) => state.loginUserReducer);
-  const { currentUser } = userState;
-  const { orders } = orderState;
-  const dispatch = useDispatch();
+interface UserState {
+  currentUser: {
+    user: [
+      {
+        name: string;
+      }
+    ];
+  };
+}
+
+interface OrderState {
+  orders: [
+    {
+      orderitems: [
+        {
+          name: string;
+          varient: string;
+          quantity: number;
+          pizza: number;
+          image: string;
+        }
+      ];
+      shippingAddress: string;
+      phoneNumber: string;
+      message: string;
+      isDelivered: string;
+      orderAmount: number;
+      isPaid: boolean;
+    }
+  ];
+}
+
+const OrderScreen: React.FC = () => {
+  const orderState = useSelector((state: RootState) => state.getUserOrdersReducer);
+  const userState = useSelector((state: RootState) => state.loginUserReducer);
+  const { currentUser } = userState as UserState;
+  const { orders } = orderState as OrderState;
+  const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserOrders());
   }, [dispatch]);
   return (
     <div>
-      <div class="container mt-5">
+      <div className="container mt-5">
         <div
           style={{
             width: "50%",
@@ -35,8 +68,8 @@ const OrderScreen = () => {
         {orders &&
           orders.map((order) => (
             <div>
-              <div class="row mt-4 p-1" id="order-container">
-                <div class="col-12 col-lg-6 col-xl-6 col-md-6 col-sm-12 mt-2">
+              <div className="row mt-4 p-1" id="order-container">
+                <div className="col-12 col-lg-6 col-xl-6 col-md-6 col-sm-12 mt-2">
                   <h4 className="heading"> Order Items</h4>
                   <hr />
 
@@ -58,7 +91,7 @@ const OrderScreen = () => {
                     </div>
                   ))}
                 </div>
-                <div class="col-12 col-lg-6 col-xl-6 col-md-6 col-sm-12 mt-2">
+                <div className="col-12 col-lg-6 col-xl-6 col-md-6 col-sm-12 mt-2">
                   <h4 className="heading">Delivery Detail</h4>
                   <hr />
                   <h6>Delivery address:&nbsp; {order.shippingAddress}</h6>

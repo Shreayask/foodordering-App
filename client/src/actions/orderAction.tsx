@@ -1,20 +1,20 @@
 import axios from 'axios';
 import type { RootState, AppDispatch } from '../store';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 //interface for checkorder
-interface checkoutInfoInterface{
+interface checkoutInfoInterface {
     address: string,
-    number:any,
-    message:string,
-    subTotal:number
+    number: any,
+    message: string,
+    subTotal: number
 }
 
 interface User {
     id: string
     name: string,
     email: string,
-    password:string
+    password: string
 
 }
 interface userType {
@@ -24,11 +24,11 @@ interface userType {
 }
 
 
-export const placeOrder = (checkoutInfo: checkoutInfoInterface) => async (dispatch:AppDispatch, getState:RootState) :Promise<void>=> {
+export const placeOrder = (checkoutInfo: checkoutInfoInterface) => async (dispatch: AppDispatch, getState: RootState): Promise<void> => {
     dispatch({ type: 'PLACE_ORDER_REQUEST' })
-    const currentUser:userType = getState().loginUserReducer.currentUser
-    const user:User[] = currentUser.user
-    const cartItems:any[] = getState().cartReducer.cartItems
+    const currentUser: userType = getState().loginUserReducer.currentUser
+    const user: User[] = currentUser.user
+    const cartItems: any[] = getState().cartReducer.cartItems
     //const navigate= useNavigate() ;
     try {
 
@@ -36,7 +36,7 @@ export const placeOrder = (checkoutInfo: checkoutInfoInterface) => async (dispat
         dispatch({ type: 'PLACE_ORDER_SUCCESS' });
         alert('Order has been placed.');
         window.location.href = "/orders";
-       // navigate("/orders")
+        // navigate("/orders")
         console.log(response)
     } catch (error) {
         dispatch({ type: 'PLACE_ORDER_FAIL' });
@@ -46,9 +46,9 @@ export const placeOrder = (checkoutInfo: checkoutInfoInterface) => async (dispat
 
 }
 
-export const getUserOrders = () => async (dispatch:AppDispatch, getState:RootState) :Promise<void>=> {
-    const currentUser:  userType = getState().loginUserReducer.currentUser;
-    const userid :String= currentUser.user[0].id;
+export const getUserOrders = () => async (dispatch: AppDispatch, getState: RootState): Promise<void> => {
+    const currentUser: userType = getState().loginUserReducer.currentUser;
+    const userid: String = currentUser.user[0].id;
     dispatch({
         type: 'USER_ORDER_REQUEST'
     })
@@ -63,7 +63,7 @@ export const getUserOrders = () => async (dispatch:AppDispatch, getState:RootSta
         dispatch({ type: 'USER_ORDER_FAIL', payload: error });
     }
 }
-export const getAllOrders = () => async (dispatch:AppDispatch, getState:RootState):Promise<void> => {
+export const getAllOrders = () => async (dispatch: AppDispatch, getState: RootState): Promise<void> => {
     // get all users orders 
     dispatch({
         type: 'ALL_ORDER_REQUEST'

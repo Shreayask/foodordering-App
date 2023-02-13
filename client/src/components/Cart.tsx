@@ -8,14 +8,16 @@ import type { RootState, AppDispatch } from '../store';
 {/**  Dipalying items added to  cart by users */ }
 
 // type interface for items
-interface itemInterface{
-  id:string,
-  name:string,
-  image:string,
-  quantity:number,
-  varient:string,
-  prices:any[],
-  pizza:number
+interface itemInterface {
+
+  id: string,
+  name: string,
+  image: string,
+  quantity: number,
+  varient: string,
+  prices: any[],
+  pizza: number,
+  varients: string[]
 }
 
 // type for props passed to cart component
@@ -23,17 +25,17 @@ interface itemInterface{
 type Props = {
   index: number;
   item: itemInterface;
- 
+
 };
 
 
-const Cart:  React.FC< Props > = (props) => {
-  const { index,item } = props;
-  const dispatch : AppDispatch= useDispatch();
+const Cart: React.FC<Props> = (props) => {
+  const { index, item } = props;
+  const dispatch: AppDispatch = useDispatch();
 
   // getting cart state from reducers
-  const cartState = useSelector((state : RootState) => state.cartReducer);
- 
+  const cartState = useSelector((state: RootState) => state.cartReducer);
+
 
   return (
     <>

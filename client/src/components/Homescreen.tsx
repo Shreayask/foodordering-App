@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import '../App.css'
 // import AllPizza from "../pizza-data";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPizzas } from "../actions/pizzaAction";
+import  {getAllPizzas}  from "../actions/pizzaAction";
 import Pizza from "../components/Pizza";
 import Loader from "./Loader";
 import Error from "./Error";

@@ -20,74 +20,73 @@ if (cartItemsValue) {
   cartItems = JSON.parse(cartItemsValue);
 }*/
 
- const currentUser = localStorage.getItem('currentUser') ? JSON.parse(`${localStorage.getItem('currentUser')}`) : null
- const cartItems= localStorage.getItem('cartItems') ? JSON.parse(`${localStorage.getItem('cartItems')} `) : []
+const currentUser = localStorage.getItem('currentUser') ? JSON.parse(`${localStorage.getItem('currentUser')}`) : null
+const cartItems = localStorage.getItem('cartItems') ? JSON.parse(`${localStorage.getItem('cartItems')} `) : []
 
- interface ILoginUserReducer {
-    currentUser: any[];
+interface ILoginUserReducer {
+  currentUser: any[];
+}
+
+interface ICartReducer {
+  cartItems: any[];
+}
+
+interface IState {
+  getAllPizzaReducer: any;
+  registerUserReducer: any;
+  loginUserReducer: ILoginUserReducer;
+  cartReducer: ICartReducer;
+  addPizzaReducer: any;
+  getPizzaByIDReducer: any;
+  updatePizzaByIDReducer: any;
+  placeOrderReducer: any;
+  getUserOrdersReducer: any;
+  getAllUsersReducer: any;
+  allUserOrdersReducer: any;
+}
+
+const rootReducer = combineReducers({
+  getAllPizzaReducer: getAllPizzaReducer,
+  registerUserReducer: registerUserReducer,
+  loginUserReducer: loginUserReducer,
+  cartReducer: cartReducer,
+  addPizzaReducer: addPizzaReducer,
+  getPizzaByIDReducer: getPizzaByIDReducer,
+  updatePizzaByIDReducer: updatePizzaByIDReducer,
+  placeOrderReducer: placeOrderReducer,
+  getUserOrdersReducer: getUserOrdersReducer,
+  getAllUsersReducer: getAllUsersReducer,
+  allUserOrdersReducer: allUserOrdersReducer
+});
+
+interface IinitialState {
+  loginUserReducer: ILoginUserReducer,
+  cartReducer: ICartReducer
+}
+
+const initialState: IinitialState = {
+  loginUserReducer: {
+    currentUser: currentUser
+  },
+  cartReducer: {
+    cartItems: cartItems
   }
-  
-  interface ICartReducer {
-    cartItems: any[];
-  }
-  
-  interface IState {
-    getAllPizzaReducer: any;
-    registerUserReducer: any;
-    loginUserReducer: ILoginUserReducer;
-    cartReducer: ICartReducer;
-    addPizzaReducer: any;
-    getPizzaByIDReducer: any;
-    updatePizzaByIDReducer: any;
-    placeOrderReducer: any;
-    getUserOrdersReducer: any;
-    getAllUsersReducer: any;
-    allUserOrdersReducer: any;
-  }
-  
-  const rootReducer= combineReducers({
-    getAllPizzaReducer: getAllPizzaReducer,
-    registerUserReducer: registerUserReducer,
-    loginUserReducer: loginUserReducer,
-    cartReducer: cartReducer,
-    addPizzaReducer: addPizzaReducer,
-    getPizzaByIDReducer: getPizzaByIDReducer,
-    updatePizzaByIDReducer: updatePizzaByIDReducer,
-    placeOrderReducer: placeOrderReducer,
-    getUserOrdersReducer: getUserOrdersReducer,
-    getAllUsersReducer: getAllUsersReducer,
-    allUserOrdersReducer: allUserOrdersReducer
-  });
+};
 
-  interface IinitialState{
-    loginUserReducer: ILoginUserReducer,
-    cartReducer: ICartReducer
-  }
-  
-  const initialState: IinitialState = {
-    loginUserReducer: {
-      currentUser: currentUser
-    },
-    cartReducer: {
-      cartItems: cartItems
-    }
-  };
-  
-  const middleware = [thunk];
+const middleware = [thunk];
 
 
-  
-  const store = createStore<any, any, any, any>(
-    rootReducer,
-    initialState,
-    composeWithDevTools(applyMiddleware(...middleware))
-  );
-  export type RootState = ReturnType<typeof store.getState>
 
-  export type AppDispatch = typeof store.dispatch
+const store = createStore<any, any, any, any>(
+  rootReducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
+export type RootState = ReturnType<typeof store.getState>
 
-  export default store;
-  
-  
-  
-  
+export type AppDispatch = typeof store.dispatch
+
+export default store;
+
+
+

@@ -3,9 +3,8 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css';
-import {Homescreen} from './components/Homescreen';
-import Navbar from './components/Navbar';
+
+import { Homescreen } from './components/Homescreen';
 import Topbar from './components/Topbar';
 import Contactus from './components/Contactus';
 import Register from './screens/Register';
@@ -26,7 +25,7 @@ function App() {
       
         <BrowserRouter>
           {/* Navbar */}
-          <Navbar></Navbar>
+          <Topbar/>
           <Routes>
             {/* admin dashboard */}
             <Route path="/admin" element={< AdminScreen />} />

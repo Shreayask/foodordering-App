@@ -1,13 +1,13 @@
 import React from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const SideBar = () => {
+const SideBar: React.FC = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div class="col-3 col-lg-3 col-md-3 col-sm-3" id="adminPanel">
+      <div className="col-3 col-lg-3 col-md-3 col-sm-3" id="adminPanel">
         <div
-          class="btn-group-vertical"
+          className="btn-group-vertical"
           role="group"
           style={{ height: "75vh", width: "90%" }}
           aria-label="Vertical button group"
@@ -17,7 +17,7 @@ const SideBar = () => {
             onClick={() => {
               navigate("/admin/userlist");
             }}
-            class="btn btn-dark"
+            className="btn btn-dark"
             style={{ borderRadius: "0px" }}
           >
             View Users
@@ -28,7 +28,7 @@ const SideBar = () => {
             onClick={() => {
               navigate("/admin/pizzalist");
             }}
-            class="btn btn-dark"
+            className="btn btn-dark"
             style={{ border: "1px solid grey", borderRadius: "0px" }}
           >
             View Pizzas
@@ -39,7 +39,7 @@ const SideBar = () => {
             onClick={() => {
               navigate("/admin/addnewpizza");
             }}
-            class="btn btn-dark"
+            className="btn btn-dark"
             style={{ border: "1px solid grey", borderRadius: "0px" }}
           >
             Add Pizza
@@ -50,7 +50,7 @@ const SideBar = () => {
             onClick={() => {
               navigate("/admin/orderlist");
             }}
-            class="btn btn-dark"
+            className="btn btn-dark"
             style={{ border: "1px solid grey", borderRadius: "0px" }}
           >
             View Order

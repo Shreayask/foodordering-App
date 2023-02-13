@@ -1,32 +1,40 @@
 import React, { useState } from "react";
 import Checkout from "../components/Checkout";
 import { useDispatch, useSelector } from "react-redux";
-import { placeOrder } from "../actions/orderAction";
 import type { RootState, AppDispatch } from '../store';
-import Loader from "../components/Loader";
-import Error from "../components/Error";
+import { placeOrder } from "../actions/orderAction";
 import "./css/cartscreen.css";
 
-interface checkoutInfoInterface{
-  address: string,
-  number:any,
-  message:string,
-  subTotal:number
+interface CheckoutInfo {
+  address: string;
+  number: string;
+  message: string;
+  subTotal: number;
 }
+
+interface itemInterface {
+  id: string,
+  name: string,
+  image: string,
+  quantity: number,
+  varient: string,
+  prices: any[],
+  pizza: number
+}
+
 const CheckoutScreen: React.FC = () => {
-  const orderState = useSelector((state:RootState) => state.placeOrderReducer);
-  const { loading, error, success } = orderState;
-  const dispatch :AppDispatch= useDispatch();
-  const cartState = useSelector((state:RootState) => state.cartReducer);
-  const cartItems = cartState.cartItems;
-  const subTotal = cartItems.reduce((x:any, item:any) => {
+  const cartState = useSelector((state: RootState) => state.cartReducer);
+  const cartItems: itemInterface[] = cartState.cartItems;
+  const subTotal: number = cartItems.reduce((x: number, item: itemInterface) => {
     return x + item.quantity * item.prices[0][item.varient];
   }, 0);
 
-  const [address, setAddress] = useState<string>(""); //State for storing user address
-  const [number, setNumber] = useState<any>(""); //State for storing user phonenumber
-  const [message, setMessage] = useState<string>(""); //State for storing user messages
-  const checkoutInfo:checkoutInfoInterface = { address, number, message, subTotal };
+  const [address, setAddress] = useState<String>(""); //State for storing user address
+  const [number, setNumber] = useState<String>(""); //State for storing user phonenumber
+  const [message, setMessage] = useState<String>(""); //State for storing user messages
+  const checkoutInfo = { address, number, message, subTotal } as CheckoutInfo;
+
+  const dispatch: AppDispatch = useDispatch();
   const checkoutHandler = () => {
     dispatch(placeOrder(checkoutInfo));
   };
@@ -41,7 +49,7 @@ const CheckoutScreen: React.FC = () => {
           >
             <h2 style={{ color: "rgb(66 60 39 / 91%)" }}>Cart Items</h2>
             <div className="row  mt-3">
-              {cartItems.map((item:any, index:number) => (
+              {cartItems.map((item, index) => (
                 <>
                   <Checkout item={item} sn={index} />
                   <hr />
@@ -57,7 +65,6 @@ const CheckoutScreen: React.FC = () => {
             <h5 style={{ color: "#362905" }}>
               Sub Total: &nbsp;RS. {subTotal}/-
             </h5>
-            <h5></h5>
             <div>
               <form
                 style={{

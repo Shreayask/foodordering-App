@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../actions/userAction";
+import {loginUser}  from "../actions/userAction";
 import type { RootState, AppDispatch } from '../store';
 
 //type interface for user
