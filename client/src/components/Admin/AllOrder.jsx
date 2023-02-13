@@ -28,7 +28,7 @@ const AllOrder = () => {
           <SideBar />
           {loading && <Loader />}
           {error && <Error error="Admin order request fail" />}
-          <div class="col-9 col-lg-9 col-md-9 col-sm-9">
+          <div class="col-9 col-lg-9 col-md-9 col-sm-9 p-0">
             <div
               class="mt-2 "
               style={{
@@ -36,6 +36,7 @@ const AllOrder = () => {
                 margin: "auto",
                 height: "70vh",
                 overflow: "auto",
+                overflowX: "auto"
               }}
             >
               <table class="table ">

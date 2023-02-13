@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import '../App.css'
 // import AllPizza from "../pizza-data";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPizzas } from "../actions/pizzaAction";
@@ -36,9 +37,8 @@ export const Homescreen : React.FC = ()=> {
       {/** main Container Displaying Pizzas  */}
       <div className="container">
         <div
-          className="row "
-          id="divider-container"
-          style={{ width: "40%", margin: "auto" }}
+          className="row divider-container "
+         style={{margin:"auto"}}
         >
           <div className="col-lg-4 col-4 col-md-4 col-sm-4">
             <div
@@ -56,7 +56,7 @@ export const Homescreen : React.FC = ()=> {
             style={{ textAlign: "center" }}
           >
             {/** image of plates and spoons */}
-            <img
+            <img 
               style={{ width: "70px", height: "70px", borderRadius: "15rem" }}
               src={
                 "https://thumbs.dreamstime.com/b/restaurant-logo-fork-spoon-gold-86311909.jpg"

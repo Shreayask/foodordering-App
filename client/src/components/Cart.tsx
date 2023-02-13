@@ -9,11 +9,13 @@ import type { RootState, AppDispatch } from '../store';
 
 // type interface for items
 interface itemInterface{
+  id:string,
   name:string,
-  varient:string,
+  image:string,
   quantity:number,
+  varient:string,
   prices:any[],
-  image:string
+  pizza:number
 }
 
 // type for props passed to cart component
@@ -31,8 +33,7 @@ const Cart:  React.FC< Props > = (props) => {
 
   // getting cart state from reducers
   const cartState = useSelector((state : RootState) => state.cartReducer);
-  // getting user's cart items from reducers
-  const cartItems = cartState.cartItems;
+ 
 
   return (
     <>

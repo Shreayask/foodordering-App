@@ -8,11 +8,14 @@ import { Link } from "react-router-dom";
 
 // type interface for items
 interface itemInterface{
+    
+    id:string,
     name:string,
-    varient:string,
+    image:string,
     quantity:number,
+    varient:string,
     prices:any[],
-    image:string
+    pizza:number
   }
 const CartScreen: React.FC = () => {
     const cartState = useSelector((state: RootState) => state.cartReducer);

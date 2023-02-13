@@ -14,6 +14,7 @@ const USER_TABLE_NAME : string= "users";
  * @param {*} res - response user by success statuscode by inserting user information in the database
  */
 
+//Interface for users 
 interface User {
     id: string
     name: string,
@@ -38,6 +39,7 @@ exports.registerUser = async (req:Request, res:Response):Promise<void> => {
     }
 
     try {
+        console.log('hiii')
         const user: User[]= await knex(USER_TABLE_NAME)
             .where({ email });
 
@@ -79,7 +81,7 @@ exports.userLogin = async (req:Request, res:Response): Promise<void> => {
             interface userType {
                 success: boolean,
                 token: string,
-                user: any
+                user: User[]
             }
             const currentUser: userType = {
                 success: true,

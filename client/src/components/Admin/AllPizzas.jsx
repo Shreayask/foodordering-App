@@ -25,7 +25,7 @@ const AllPizzas = () => {
         </h3>
         <div class="row mt-1">
           <SideBar />
-          <div class="col-9 col-lg-9 col-md-9 col-sm-9">
+          <div class="col-9 col-lg-9 col-md-9 col-sm-9 p-0">
             {loading ? (
               <h1>Loading....</h1>
             ) : error ? (
@@ -57,10 +57,10 @@ const AllPizzas = () => {
                           <td>{index + 1}</td>
                           <td>{pizza.name}</td>
                           <td>
-                            Small:{pizza.prices[0]["small"]}
-                            <br></br>Medium:{pizza.prices[0]["medium"]}
+                            Small:&nbsp;Rs.{pizza.prices[0]["small"]}
+                            <br></br>Medium:&nbsp;Rs.{pizza.prices[0]["medium"]}
                             <br />
-                            Large:{pizza.prices[0]["large"]}
+                            Large:&nbsp;Rs.{pizza.prices[0]["large"]}
                           </td>
                           <td>{pizza.category}</td>
                           <td>

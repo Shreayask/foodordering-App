@@ -2,39 +2,46 @@ import React, { useState } from "react";
 import Checkout from "../components/Checkout";
 import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../actions/orderAction";
+import type { RootState, AppDispatch } from '../store';
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import "./css/cartscreen.css";
 
-const CheckoutScreen = () => {
-  const orderState = useSelector((state) => state.placeOrderReducer);
+interface checkoutInfoInterface{
+  address: string,
+  number:any,
+  message:string,
+  subTotal:number
+}
+const CheckoutScreen: React.FC = () => {
+  const orderState = useSelector((state:RootState) => state.placeOrderReducer);
   const { loading, error, success } = orderState;
-  const dispatch = useDispatch();
-  const cartState = useSelector((state) => state.cartReducer);
+  const dispatch :AppDispatch= useDispatch();
+  const cartState = useSelector((state:RootState) => state.cartReducer);
   const cartItems = cartState.cartItems;
-  const subTotal = cartItems.reduce((x, item) => {
+  const subTotal = cartItems.reduce((x:any, item:any) => {
     return x + item.quantity * item.prices[0][item.varient];
   }, 0);
 
-  const [address, setAddress] = useState(""); //State for storing user address
-  const [number, setNumber] = useState(""); //State for storing user phonenumber
-  const [message, setMessage] = useState(""); //State for storing user messages
-  const checkoutInfo = { address, number, message, subTotal };
+  const [address, setAddress] = useState<string>(""); //State for storing user address
+  const [number, setNumber] = useState<any>(""); //State for storing user phonenumber
+  const [message, setMessage] = useState<string>(""); //State for storing user messages
+  const checkoutInfo:checkoutInfoInterface = { address, number, message, subTotal };
   const checkoutHandler = () => {
     dispatch(placeOrder(checkoutInfo));
   };
 
   return (
     <div>
-      <div class="container mt-2 pt-5">
-        <div class="row" style={{ marginTop: "5rem" }} id="cart-container">
+      <div className="container mt-2 pt-5">
+        <div className="row" style={{ marginTop: "5rem" }} id="cart-container">
           <div
-            class="col-12 col-lg-8 col-md-8 col-sm-12"
+            className="col-12 col-lg-8 col-md-8 col-sm-12"
             style={{ backgroundColor: "rgb(178 185 143 / 32%)" }}
           >
             <h2 style={{ color: "rgb(66 60 39 / 91%)" }}>Cart Items</h2>
-            <div class="row  mt-3">
-              {cartItems.map((item, index) => (
+            <div className="row  mt-3">
+              {cartItems.map((item:any, index:number) => (
                 <>
                   <Checkout item={item} sn={index} />
                   <hr />
@@ -43,7 +50,7 @@ const CheckoutScreen = () => {
             </div>
           </div>
           <div
-            class="col-12 col-lg-4 col-md-4 col-sm-12 "
+            className="col-12 col-lg-4 col-md-4 col-sm-12 "
             style={{ backgroundColor: "#d3dd9deb" }}
           >
             <h2 style={{ color: "rgb(37 40 18 / 82%)" }}>Payment Info</h2>
@@ -60,28 +67,28 @@ const CheckoutScreen = () => {
                   padding: "15px",
                 }}
               >
-                <div class="mb-3">
-                  <label class="form-label">Phone number</label>
+                <div className="mb-3">
+                  <label className="form-label">Phone number</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     onChange={(e) => setNumber(e.target.value)}
                   />
                 </div>
-                <div class="mb-3">
-                  <label class="form-label">Location</label>
+                <div className="mb-3">
+                  <label className="form-label">Location</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     onChange={(e) => setAddress(e.target.value)}
                     required
                   />
                 </div>
-                <div class="mb-3">
-                  <label class="form-label">Message</label>
+                <div className="mb-3">
+                  <label className="form-label">Message</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     onChange={(e) => setMessage(e.target.value)}
                     required
                   />
@@ -94,7 +101,7 @@ const CheckoutScreen = () => {
                       fontSize: "13px",
                       fontWeight: "500",
                     }}
-                    class="btn btn-warning"
+                    className="btn btn-warning"
                     onClick={checkoutHandler}
                   >
                     Place order

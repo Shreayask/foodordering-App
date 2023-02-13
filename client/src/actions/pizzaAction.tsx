@@ -1,6 +1,20 @@
 import axios from 'axios'
+import type { RootState, AppDispatch } from '../store';
+import { useNavigate } from "react-router-dom";
 
-export const getAllPizzas = () => async (dispatch) => {
+interface pizzaI{
+name:String,
+varients:String[],
+prices:{
+small:number,
+medium:number,
+large:number}[],
+category:String,
+image:String,
+description:String
+}
+
+export const getAllPizzas = () => async (dispatch:AppDispatch):Promise<void> => {
     dispatch({ type: 'GET_PIZZAS_REQUEST' })
     try {
         const res = await axios.get('http://localhost:5000/api/pizzas/getAllPizzas')
@@ -10,7 +24,7 @@ export const getAllPizzas = () => async (dispatch) => {
         dispatch({ type: 'GET_PIZZAS_FAIL', payload: err })
     }
 };
-export const addPizza = (pizza) => async (dispatch) => {
+export const addPizza = (pizza:pizzaI) => async (dispatch:AppDispatch):Promise<void> => {
     dispatch({ type: 'ADD_PIZZAS_REQUEST' })
     try {
         console.log(pizza);
@@ -23,7 +37,7 @@ export const addPizza = (pizza) => async (dispatch) => {
         alert('Failed to add pizza.')
     }
 };
-export const getPizzaById = (pizzaId) => async (dispatch) => {
+export const getPizzaById = (pizzaId:string) => async (dispatch:AppDispatch) :Promise<void>=> {
     dispatch({ type: 'GET_PIZZABYID_REQUEST' })
     try {
         const res = await axios.post('http://localhost:5000/api/pizzas/getpizzabyid', { pizzaId })
@@ -32,26 +46,32 @@ export const getPizzaById = (pizzaId) => async (dispatch) => {
         dispatch({ type: 'GET_PIZZABYID_FAIL', payload: err })
     }
 };
-export const updatePizza = (updatedPizza) => async (dispatch) => {
+export const updatePizza = (updatedPizza:pizzaI) => async (dispatch:AppDispatch):Promise<void> => {
     dispatch({ type: 'UPDATE_PIZZABYID_REQUEST' })
+    
+const navigate= useNavigate() ;
     try {
         const res = await axios.post('http://localhost:5000/api/pizzas/updatepizza', { updatedPizza })
         dispatch({ type: 'UPDATE_PIZZABYID_SUCCESS', payload: res.data })
-        window.location.href = '/admin/pizzalist'
+        //window.location.href = '/admin/pizzalist',
+        navigate('/admin/pizzalist');
     } catch (err) {
         dispatch({ type: 'UPDATE_PIZZABYID_FAIL', payload: err })
     }
 };
 
-export const deletePizza = (pizzaId) => async (dispatch) => {
+export const deletePizza = (pizzaId:String) => async (dispatch:AppDispatch):Promise<void> => {
+   
+const navigate= useNavigate() ;
     try {
         const res = await axios.post('http://localhost:5000/api/pizzas/deletepizza', { pizzaId })
         alert('Pizza Deleted Sucessfully');
-        window.location.href = '/admin/pizzalist'
+       // window.location.href = '/admin/pizzalist'
+        navigate('/admin/pizzalist');
         console.log(res)
 
     } catch (error) {
-        alert('Pizza Delete Uncessfully')
+        alert('Failed to delete Pizza.')
 
     }
 

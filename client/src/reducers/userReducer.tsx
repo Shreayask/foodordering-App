@@ -7,7 +7,7 @@ import {
     USER_LOGIN_REQUEST
 } from "../actions/userAction";
 
-export const registerUserReducer = (state = {}, action) => {
+export const registerUserReducer = (state = {}, action:any) => {
 
     switch (action.type) {
         case USER_REGISTER_REQUEST:
@@ -34,7 +34,7 @@ export const registerUserReducer = (state = {}, action) => {
 
 };
 
-export const loginUserReducer = (state = {}, action) => {
+export const loginUserReducer = (state = {}, action:any) => {
 
     switch (action.type) {
         case USER_LOGIN_REQUEST:
@@ -59,7 +59,7 @@ export const loginUserReducer = (state = {}, action) => {
 
 };
 
-export const getAllUsersReducer = (state = { users: [] }, action) => {
+export const getAllUsersReducer = (state = { users: [] }, action:any) => {
     switch (action.type) {
         case 'GET_USERS_REQUEST':
             return {

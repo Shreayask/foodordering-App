@@ -9,7 +9,7 @@ const Carousel = () => {
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
 
                 </div>
-                <div class="carousel-inner mt-5">
+                <div class="carousel-inner " style={{ marginTop: "4.09rem!important" }}>
                     <div class="carousel-item active " >
                         <img src={"https://cdn.dribbble.com/users/8300847/screenshots/15967671/untitled-1_4x.jpg"}
                             class="d-block w-100 h-100 opacity-3" alt="pic" />

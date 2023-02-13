@@ -1,10 +1,11 @@
-
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.css';
 import {Homescreen} from './components/Homescreen';
+import Navbar from './components/Navbar';
 import Topbar from './components/Topbar';
 import Contactus from './components/Contactus';
 import Register from './screens/Register';
@@ -22,10 +23,10 @@ import OrderScreen from './screens/OrderScreen';
 function App() {
   return (
     <div className="App">
-      <div className="App">
+      
         <BrowserRouter>
           {/* Navbar */}
-          <Topbar />
+          <Navbar></Navbar>
           <Routes>
             {/* admin dashboard */}
             <Route path="/admin" element={< AdminScreen />} />
@@ -51,7 +52,7 @@ function App() {
         </BrowserRouter>
       </div>
 
-    </div>
+  
 
   );
 }
