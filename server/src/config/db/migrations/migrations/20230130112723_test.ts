@@ -2,8 +2,8 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function (knex) {
-    return knex.schema.createTable('pizzas', (table) => {
+exports.up = function (knex:any) {
+    return knex.schema.createTable('place', (table:any) => {
         table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
         table.string('name').notNullable();
         table.specificType('varients', 'text[]');
@@ -21,6 +21,6 @@ exports.up = function (knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function (knex) {
-    return knex.schema.dropTable('pizzas');
+exports.down = function (knex:any) {
+    return knex.schema.dropTable('place');
 };

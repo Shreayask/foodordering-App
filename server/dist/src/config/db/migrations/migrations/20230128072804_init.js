@@ -1,4 +1,5 @@
-const { v4: uuidv4 } = require('uuid');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -11,9 +12,8 @@ exports.up = function (knex) {
         table.string('password').notNullable();
         table.boolean('isAdmin').defaultTo(false);
         table.timestamps(true, true);
-    })
+    });
 };
-
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -21,3 +21,4 @@ exports.up = function (knex) {
 exports.down = function (knex) {
     return knex.schema.dropTable('users');
 };
+//# sourceMappingURL=20230128072804_init.js.map

@@ -39,7 +39,7 @@ const Carousel: React.FC = () => {
           <div className="carousel-item">
             <img
               src={
-                "https://static.picmaker.com/scene-prebuilts/thumbnails/FA-0009.png"
+                "https://flipdish.imgix.net/XZB8dLy29xAgz7iAOZLV95ateo.jpg?w=1080&h=720"
               }
               className="d-block w-100 h-100 opacity-3"
               alt="pic"

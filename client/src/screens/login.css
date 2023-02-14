@@ -37,7 +37,7 @@
     margin: auto;
     padding: 1vmax;
     justify-content: space-evenly;
-    height: 90%;
+    height: 100%;
     transition: all 0.5s;
   }
   
@@ -155,6 +155,17 @@
     }
     .LoginSignUpBox {
       width: 100vw;
+      height: 60vh;
+    }
+  }
+
+  @media only screen and (min-width:990px){
+    .LoginSignUpContainer {
+      background-color: white;
+      width: 35%;
+    }
+    .LoginSignUpBox {
+      width: 90vw;
       height: 60vh;
     }
   }
