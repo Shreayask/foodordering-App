@@ -62,3 +62,75 @@ body{
     margin: auto;
   }
 }
+
+/* Info List */
+.info-list {
+	background-image: url(./images/back_2.png);
+	text-align: center;
+	padding: 60px 0;
+}
+.info-list h4 {
+	padding: 30px 0;
+}
+.info-list .order-img {
+    max-width: 90px;
+    transition: all 400ms ease;
+}
+
+/* Footer-style */
+.footer{
+	background-color: #1b1b1b;
+    background-image: url(./images/footer_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff; 
+}
+.footer .tp-footer .newsletter {
+	text-align: center;
+	padding: 30px 0;
+}
+.footer .tp-footer .newsletter h3 {
+	font-size: 40px;
+	padding: 30px 0;
+	color: #1abb48;
+}
+.footer .tp-footer .newsletter input {
+	font-size: 16px;
+    padding: 11px 120px 12px 22px;
+    line-height: 26px;
+    font-weight: bold;
+    background: transparent;
+    border: 2px solid #1d2326;
+    border-radius: 0;
+    color: #dce4e8;
+}
+.footer .tp-footer .newsletter button {
+    padding: 11px 18px 12px 23px;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-size: 16px;
+    border: 2px solid #1d2326;
+    line-height: 26px;
+    letter-spacing: 3px;
+    background: #1d2326;
+    color: #fff;
+    margin-left: -6px;
+}
+.footer .tp-footer .newsletter button:hover {
+	background-color: #1abb48;
+	border-color: #1abb48;
+	transition: all 0.8s ease-in-out;
+}
+.footer-mid {
+	padding: 50px 0;
+}
+.footer-mid h4{
+	padding: 10px 0;
+	text-transform: uppercase;
+}
+.footer-bottom p{
+	padding: 30px;
+	border-top: 2px solid #3c3c3c;
+	font-size: 16px;
+	text-align: center;
+}

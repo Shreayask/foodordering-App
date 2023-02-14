@@ -27,8 +27,8 @@ const Register: React.FC = () => {
 
   return (
     <>
-      <div className="container mt-5 pt-5">
-        <div className="LoginSignUpContainer mt-4">
+      <div className="container">
+        <div className="LoginSignUpContainer ">
           <div className="LoginSignUpBox">
             <form className="loginForm">
               <div className="logininput">
