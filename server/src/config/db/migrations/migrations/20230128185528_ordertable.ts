@@ -22,4 +22,8 @@ exports.up = function (knex:any) {
  */
 exports.down = function (knex:any) {
     return knex.schema.dropTable('orders');
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> Ratish_2

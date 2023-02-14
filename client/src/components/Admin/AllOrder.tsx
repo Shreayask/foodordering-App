@@ -12,6 +12,7 @@ interface OrderInterface {
   orderAmount: number;
   shippingAddress: string;
   phoneNumber: string;
+  orderitems:any[];
   message: string;
   created_at: string;
   isDelivered: boolean;
@@ -51,16 +52,17 @@ const AllOrder: React.FC = () => {
                 padding: "0px",
                 margin: "auto",
                 height: "70vh",
-                overflow: "auto",
+                overflowY: "auto",
                 overflowX: "auto"
               }}
             >
-              <table className="table ">
+              <table className="table " style={{width:"1143px"}}>
                 <thead>
                   <tr>
-                    <th scope="col">Order Id</th>
+                    <th>Sn</th>
+                    <th scope="col">Order </th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Delivery Address</th>
+                    <th scope="col">Address</th>
                     <th scope="col">Ph No.</th>
                     <th scope="col">Message</th>
                     <th scope="col">Date</th>
@@ -70,9 +72,12 @@ const AllOrder: React.FC = () => {
                 </thead>
                 <tbody>
                   {orders &&
-                    orders.map((order) => (
+                    orders.map((order,index) => (
                       <tr key={order.id}>
-                        <td>{order.id}</td>
+                        <td>{index+1}</td>
+                        <td>{order.orderitems.map((item)=>(
+                          <p>{item.name}({item.varient})&nbsp;&nbsp;&nbsp;<b>Qty:&nbsp;{item.quantity}</b><hr></hr></p>
+                        ))}</td>
                         <td>Rs {order.orderAmount}/-</td>
                         <td>{order.shippingAddress}</td>
                         <td>{order.phoneNumber}</td>
