@@ -1,13 +1,25 @@
-export const cartReducer = (state = { cartItems: [] }, action) => {
+
+
+//interface for cart item
+interface cartI{
+    name: String,
+    id: String,
+    image: String,
+    varient: String,
+    quantity: Number,
+    prices: any[],
+    pizza: number
+}
+export const cartReducer = (state = { cartItems: [] }, action:any) => {
     switch (action.type) {
         case 'ADD_TO_CART':
             const alreadyExists = state.cartItems.find(
-                item => item.id === action.payload.id
+                (item:cartI) => item.id === action.payload.id
             );
             if (alreadyExists) {
                 return {
                     ...state,
-                    cartItems: state.cartItems.map(item => item.id === action.payload.id ? action.payload : item)
+                    cartItems: state.cartItems.map((item:cartI)=> item.id === action.payload.id ? action.payload : item)
                 }
 
             } else {
@@ -21,7 +33,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
             return {
                 ...state,
                 cartItems: state.cartItems.filter(
-                    (item) => item.id !== action.payload.id)
+                    (item:cartI) => item.id !== action.payload.id)
             }
         default:
             return state;

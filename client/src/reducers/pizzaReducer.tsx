@@ -1,4 +1,4 @@
-export const getAllPizzaReducer = (state = { pizzas: [] }, action) => {
+export const getAllPizzaReducer = (state = { pizzas: [] }, action:any) => {
     switch (action.type) {
         case 'GET_PIZZAS_REQUEST':
             return {
@@ -19,7 +19,7 @@ export const getAllPizzaReducer = (state = { pizzas: [] }, action) => {
             return state
     }
 }
-export const addPizzaReducer = (state = {}, action) => {
+export const addPizzaReducer = (state = {}, action:any) => {
     switch (action.type) {
         case 'ADD_PIZZAS_REQUEST':
             return {
@@ -40,7 +40,7 @@ export const addPizzaReducer = (state = {}, action) => {
             return state
     }
 }
-export const getPizzaByIDReducer = (state = {}, action) => {
+export const getPizzaByIDReducer = (state = {}, action:any) => {
     switch (action.type) {
         case 'GET_PIZZABYID_REQUEST':
             return {
@@ -61,7 +61,7 @@ export const getPizzaByIDReducer = (state = {}, action) => {
             return state
     }
 }
-export const updatePizzaByIDReducer = (state = {}, action) => {
+export const updatePizzaByIDReducer = (state = {}, action:any) => {
     switch (action.type) {
         case 'UPDATE_PIZZABYID_REQUEST':
             return {

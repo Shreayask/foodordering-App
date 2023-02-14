@@ -1,4 +1,5 @@
-export const placeOrderReducer = (state = {}, action) => {
+
+export const placeOrderReducer = (state = {}, action:any) => {
     switch (action.type) {
         case 'PLACE_ORDER_REQUEST':
             return {
@@ -21,7 +22,7 @@ export const placeOrderReducer = (state = {}, action) => {
     }
 }
 
-export const getUserOrdersReducer = (state = { orders: [] }, action) => {
+export const getUserOrdersReducer = (state = { orders: [] }, action:any) => {
     switch (action.type) {
         case 'USER_ORDER_REQUEST':
             return {
@@ -44,7 +45,7 @@ export const getUserOrdersReducer = (state = { orders: [] }, action) => {
             return state;
     }
 }
-export const allUserOrdersReducer = (state = { orders: [] }, action) => {
+export const allUserOrdersReducer = (state = { orders: [] }, action:any) => {
     switch (action.type) {
         case 'ALL_ORDER_REQUEST':
             return {

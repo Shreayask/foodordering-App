@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import type { RootState, AppDispatch } from '../store';
 export const USER_REGISTER_REQUEST = "USER_REGISTER_REQUEST";
 export const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
 export const USER_REGISTER_FAIL = "USER_REGISTER_FAIL";
@@ -6,7 +8,24 @@ export const USER_LOGIN_FAIL = "USER_LOGIN_FAIL";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 
-export const registerUser = (user) => async (dispatch) => {
+
+// interface type for register user
+interface User {
+   
+    name: string,
+    email: string,
+    password:string
+
+}
+// interface type for login user
+interface UserLogin {
+   
+    
+    email: string,
+    password:string
+
+}
+export const registerUser = (user:User) => async (dispatch:AppDispatch):Promise<void> => {
     dispatch({ type: USER_REGISTER_REQUEST })
     try {
         if (!user.email || !user.email || !user.password) {
@@ -28,7 +47,7 @@ export const registerUser = (user) => async (dispatch) => {
     }
 }
 
-export const loginUser = (user) => async (dispatch) => {
+export const loginUser = (user:UserLogin) => async (dispatch:AppDispatch) :Promise<void>=> {
     dispatch({ type: USER_LOGIN_REQUEST })
     try {
         console.log("i am action", user);
@@ -56,14 +75,14 @@ export const loginUser = (user) => async (dispatch) => {
     }
 }
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => (dispatch:AppDispatch) => {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('cartItems');
     alert('Logged out successfully.');
     window.location.href = "/"
 }
 
-export const getAllUsers = () => async (dispatch) => {
+export const getAllUsers = () => async (dispatch:AppDispatch):Promise<void> => {
     dispatch({ type: 'GET_USERS_REQUEST' })
     try {
         const res = await axios.get('http://localhost:5000/api/users/getallusers')

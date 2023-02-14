@@ -50,3 +50,15 @@ body{
   opacity: 1 !important;
 }
 
+.divider-container{
+  width: 40% !important;
+  margin: auto ;
+}
+
+
+@media screen and (max-width: 600px){
+  .divider-container{
+    width: 70% !important;
+    margin: auto;
+  }
+}

@@ -1,7 +1,7 @@
-
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Homescreen } from './components/Homescreen';
@@ -22,10 +22,10 @@ import OrderScreen from './screens/OrderScreen';
 function App() {
   return (
     <div className="App">
-      <div className="App">
+      
         <BrowserRouter>
           {/* Navbar */}
-          <Topbar />
+          <Topbar/>
           <Routes>
             {/* admin dashboard */}
             <Route path="/admin" element={< AdminScreen />} />
@@ -51,7 +51,7 @@ function App() {
         </BrowserRouter>
       </div>
 
-    </div>
+  
 
   );
 }

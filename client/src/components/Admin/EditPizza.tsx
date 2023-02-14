@@ -10,6 +10,21 @@ import Success from "../Success";
 
 import type { RootState, AppDispatch } from '../../store';
 
+
+interface pizzaUpdate{
+    
+  id: String | undefined,
+  name:string,
+  image:string,
+  description:string,
+  category:string,
+  prices: {
+    small: number |undefined,
+    medium: number|undefined,
+    large: number|undefined,
+  
+}
+}
 const EditPizza: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [smallPrice, setSmallPrice] = useState<number>();
@@ -45,7 +60,7 @@ const EditPizza: React.FC = () => {
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const updatedPizza = {
+    const updatedPizza:pizzaUpdate = {
       id: pizzaId,
       name,
       image,
