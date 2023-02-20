@@ -11,19 +11,18 @@ import Success from "../Success";
 import type { RootState, AppDispatch } from '../../store';
 
 
-interface pizzaUpdate{
-    
-  id: String | undefined,
-  name:string,
-  image:string,
-  description:string,
-  category:string,
+interface pizzaUpdate {
+  id: string | undefined,
+  name: string,
+  image: string,
+  description: string,
+  category: string,
   prices: {
-    small: number |undefined,
-    medium: number|undefined,
-    large: number|undefined,
-  
-}
+    small: number | undefined,
+    medium: number | undefined,
+    large: number | undefined,
+
+  }
 }
 const EditPizza: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -60,7 +59,7 @@ const EditPizza: React.FC = () => {
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const updatedPizza:pizzaUpdate = {
+    const updatedPizza: pizzaUpdate = {
       id: pizzaId,
       name,
       image,
@@ -88,7 +87,7 @@ const EditPizza: React.FC = () => {
         <div className="row mt-1">
           <>
             <SideBar />
-            {console.log("hiiii", name, category)}
+            {/* {console.log("hiiii", name, category)} */}
             <div className="col-8 col-lg-8 col-md-8 col-sm-12">
               <form className="row g-3" onSubmit={submitForm}>
                 <div className="col-12">

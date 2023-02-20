@@ -3,36 +3,13 @@ import Login from "../Login.jsx";
 import { Provider } from "react-redux";
 import store from "../../store.js";
 import { BrowserRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
-//import { loginHandler } from "../Login";
 import userEvent from '@testing-library/user-event'
 import { loginUser } from "../../actions/userAction";
 import { useDispatch } from "./useDispatch";
-
+import { loginHandler } from '../Login'
 
 
 describe("<Login />", () => {
-
-  // automock the entire login module
-
-  // it('Should check whether user can input data`', () => {
-  //   //renders login page
-  //   render(
-  //     <Provider store={store}>
-  //       <BrowserRouter>
-  //         <Login />
-  //       </BrowserRouter>
-  //     </Provider>
-  //   );
-
-  //   const inputEmail = screen.getByTestId('email');
-  //   inputEmail.value = "test@gmail.com"
-  //   const inputPassword = screen.getByTestId('password');
-  //   inputPassword.value = "password"
-
-  //   expect(inputEmail.value).toBe('test@gmail.com')
-  //   expect(inputPassword.value).toBe('password')
-  // })
 
   it("Should render the elememts correctly", () => {
     render(
@@ -65,34 +42,29 @@ describe("<Login />", () => {
     userEvent.type(inputPassword, 'password')
     expect(screen.getByTestId('password')).toHaveValue('password')
 
+    const mockFnc = jest.fn();
+
     fireEvent.click(screen.getByTestId('login-btn'));
+    //mockFnc()
+    // expect(mockFnc).toHaveBeenCalled();
+    // Assert that the location has changed to the home page
     expect(window.location.pathname).toBe("/");
 
   })
+  it("should navigate to home page on click", () => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Login />
+        </BrowserRouter>
+      </Provider>
+    )
 
-
-
-
-
-
-  /*
-  
-    it("calls the loginUser action when the login button is clicked", () => {
-  
-      const dispatch = jest.fn();
-      useDispatch.mockImplementation(() => dispatch);
-      render(
-        <Provider store={store}>
-          <BrowserRouter>
-            <Login />
-          </BrowserRouter>
-        </Provider>
-      );
-  
-      const loginButton = screen.getByTestId("login-btn");
-      fireEvent.click(loginButton); 
-      expect(dispatch).toHaveBeenCalledWith(loginUser);
-    });*/
+    const button = screen.getByTestId("button");
+    fireEvent.click(button);
+    // Assert that the location has changed to the home page
+    expect(window.location.pathname).toBe("/");
+  });
 });
 
 

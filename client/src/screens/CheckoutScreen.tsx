@@ -5,22 +5,25 @@ import type { RootState, AppDispatch } from '../store';
 import { placeOrder } from "../actions/orderAction";
 import "./css/cartscreen.css";
 
+import { ItemVarients, itemInterface } from "src/actions/cartAction";
+
+
 interface CheckoutInfo {
   address: string;
-  number: string;
+  number: number;
   message: string;
   subTotal: number;
 }
 
-interface itemInterface {
-  id: string,
-  name: string,
-  image: string,
-  quantity: number,
-  varient: string,
-  prices: any[],
-  pizza: number
-}
+// interface itemInterface {
+//   id: string,
+//   name: string,
+//   image: string,
+//   quantity: number,
+//   varient: string,
+//   prices: any[],
+//   pizza: number
+// }
 
 const CheckoutScreen: React.FC = () => {
   const cartState = useSelector((state: RootState) => state.cartReducer);
@@ -29,9 +32,9 @@ const CheckoutScreen: React.FC = () => {
     return x + item.quantity * item.prices[0][item.varient];
   }, 0);
 
-  const [address, setAddress] = useState<String>(""); //State for storing user address
-  const [number, setNumber] = useState<String>(""); //State for storing user phonenumber
-  const [message, setMessage] = useState<String>(""); //State for storing user messages
+  const [address, setAddress] = useState<string>(""); //State for storing user address
+  const [number, setNumber] = useState<number>(); //State for storing user phonenumber
+  const [message, setMessage] = useState<string>(""); //State for storing user messages
   const checkoutInfo = { address, number, message, subTotal } as CheckoutInfo;
 
   const dispatch: AppDispatch = useDispatch();
@@ -79,7 +82,7 @@ const CheckoutScreen: React.FC = () => {
                   <input
                     type="text"
                     className="form-control"
-                    onChange={(e) => setNumber(e.target.value)}
+                    onChange={(e) => setNumber(Number(e.target.value))}
                   />
                 </div>
                 <div className="mb-3">

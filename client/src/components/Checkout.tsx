@@ -3,25 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 // type interface for item prop
-interface itemInterface{
-    name:string,
-    varient:string,
-    quantity:number,
-    prices:any[],
-    image:string
-  }
-  
-  // type for props passed to checkout component
-  
-  type Props = {
+interface itemInterface {
+    name: string,
+    varient: string,
+    quantity: number,
+    prices: {
+        [key: string]: number;
+    }[],
+    image: string
+}
+
+// type for props passed to checkout component
+
+type Props = {
     sn: number;
     item: itemInterface;
-   
-  };
+
+};
 // checkout component displaying pizza items added to cart 
 // total price of pizzas added to cart
-const Checkout : React.FC< Props > = (props)=> {
-    const { sn,item } = props;
+const Checkout: React.FC<Props> = (props) => {
+    const { sn, item } = props;
     return (
         <>
             <div className="col-6 col-lg-6 col-md-6 col-sm-6 mt-2">

@@ -1,4 +1,4 @@
-const { registerUser } = require("./userController");
+// const { registerUser } = require("./userController");
 
 const { server } = require("../index"); // Link to your server file
 const request = require("supertest");

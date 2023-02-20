@@ -5,6 +5,7 @@ class CustomSequencer extends TestSequencer {
     sort(tests) {
         const target_test_path = path.join(__dirname, 'target.test.js');
 
+
         const target_test_index = tests.findIndex(t => t.path === target_test_path);
 
         if (target_test_index == -1) {

@@ -7,12 +7,13 @@ import Error from "../Error";
 
 import type { RootState, AppDispatch } from '../../store';
 
+//Order interface
 interface OrderInterface {
   id: string;
   orderAmount: number;
   shippingAddress: string;
   phoneNumber: string;
-  orderitems:any[];
+  orderitems: any[];
   message: string;
   created_at: string;
   isDelivered: boolean;
@@ -22,9 +23,9 @@ interface OrderInterface {
 const AllOrder: React.FC = () => {
   const allOrdersState = useSelector((state: RootState) => state.allUserOrdersReducer);
   const { loading, orders, error } = allOrdersState as {
-    loading: any,
+    loading: string,
     orders: OrderInterface[];
-    error: any
+    error: string
   };
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
@@ -56,7 +57,7 @@ const AllOrder: React.FC = () => {
                 overflowX: "auto"
               }}
             >
-              <table className="table " style={{width:"1143px"}}>
+              <table className="table " style={{ width: "1143px" }}>
                 <thead>
                   <tr>
                     <th>Sn</th>
@@ -72,10 +73,10 @@ const AllOrder: React.FC = () => {
                 </thead>
                 <tbody>
                   {orders &&
-                    orders.map((order,index) => (
+                    orders.map((order, index) => (
                       <tr key={order.id}>
-                        <td>{index+1}</td>
-                        <td>{order.orderitems.map((item)=>(
+                        <td>{index + 1}</td>
+                        <td>{order.orderitems.map((item) => (
                           <p>{item.name}({item.varient})&nbsp;&nbsp;&nbsp;<b>Qty:&nbsp;{item.quantity}</b><hr></hr></p>
                         ))}</td>
                         <td>Rs {order.orderAmount}/-</td>

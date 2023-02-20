@@ -4,22 +4,26 @@ import { addToCart } from "../actions/cartAction";
 import "./css/pizza.css";
 
 import type { RootState, AppDispatch } from '../store';
+import { pizzaI } from "src/actions/pizzaAction";
 
-interface Ipizza {
+export interface Ipizza {
   id: string,
   name: string,
   image: string,
   quantity: number,
   varients: string[],
-  prices: any[],
+  varient: string,
+  prices: {
+    [key: string]: number;
+  }[],
   pizza: number,
   description: string,
-  varient: string
-
 }
 
+//props interface of pizza
 interface props {
   pizza: Ipizza
+
 }
 
 // component Diplaying a pizza

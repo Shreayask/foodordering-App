@@ -1,4 +1,4 @@
-import React, { useState as useStateMock } from 'react';
+import React from 'react';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';

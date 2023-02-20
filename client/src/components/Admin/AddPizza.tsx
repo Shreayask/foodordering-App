@@ -8,27 +8,29 @@ import Success from "../Success";
 
 import type { RootState, AppDispatch } from '../../store';
 
-interface pizzaI{
-  name:String,
 
-  prices:{
-  small:number | undefined,
-  medium:number |undefined,
-  large:number |undefined}[],
-  category:String,
-  image:String,
-  description:String
-  }
-  
+//Pizza Interface
+interface pizzaI {
+  name: string,
+  prices: {
+    small: number | undefined,
+    medium: number | undefined,
+    large: number | undefined
+  },
+  category: string,
+  image: string,
+  description: string
+}
+
 
 const AddPizza: React.FC = () => {
-  const [name, setName] = useState<string>("");
-  const [smallPrice, setSmallPrice] = useState<number>();
-  const [largePrice, setLargePrice] = useState<number>();
-  const [mediumPrice, setMediumPrice] = useState<number>();
-  const [image, setImage] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
+  const [name, setName] = useState<string>("");                 //State to set value for name
+  const [smallPrice, setSmallPrice] = useState<number>();       //State to set value for smallPrice
+  const [largePrice, setLargePrice] = useState<number>();       //State to set value for largePrice
+  const [mediumPrice, setMediumPrice] = useState<number>();     //State to set value for mediuemPrice
+  const [image, setImage] = useState<string>("");                 //State to set value for image
+  const [description, setDescription] = useState<string>("");     //State to set value for description
+  const [category, setCategory] = useState<string>("");           //State to set value for category
 
   const addPizzaState = useSelector((state: RootState) => state.addPizzaReducer);
   const { loading, error, success } = addPizzaState;
@@ -37,16 +39,16 @@ const AddPizza: React.FC = () => {
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const pizza:pizzaI = {
+    const pizza: pizzaI = {
       name,
       image,
       description,
       category,
-      prices: [{
+      prices: {
         small: smallPrice,
         medium: mediumPrice,
         large: largePrice,
-      }],
+      },
     };
     dispatch(addPizza(pizza));
   };
