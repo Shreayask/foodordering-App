@@ -3,33 +3,35 @@ import type { RootState, AppDispatch } from '../store';
 import { useNavigate } from "react-router-dom";
 
 
-interface pizzaI{
-    name:String,
-    
-    prices:{
-    small:number | undefined,
-    medium:number |undefined,
-    large:number |undefined}[],
-    category:String,
-    image:String,
-    description:String
-    }
-interface pizzaUpdate{
-    
-    id: String | undefined,
-    name:string,
-    image:string,
-    description:string,
-    category:string,
+//Pizza interface
+export interface pizzaI {
+    name: string,
     prices: {
-      small: number |undefined,
-      medium: number|undefined,
-      large: number|undefined,
-    
-  }
-  }
+        small: number | undefined,
+        medium: number | undefined,
+        large: number | undefined
+    },
+    category: string,
+    image: string,
+    description: string
+}
 
-export const getAllPizzas = () => async (dispatch:AppDispatch):Promise<void> => {
+//Interface for pizza update
+interface pizzaUpdate {
+    id: string | undefined,
+    name: string,
+    prices: {
+        small: number | undefined,
+        medium: number | undefined,
+        large: number | undefined,
+    }
+    category: string,
+    description: string,
+    image: string,
+}
+
+//Action to get all pizza
+export const getAllPizzas = () => async (dispatch: AppDispatch): Promise<void> => {
     dispatch({ type: 'GET_PIZZAS_REQUEST' })
     try {
         const res = await axios.get('http://localhost:5000/api/pizzas/getAllPizzas')
@@ -39,7 +41,9 @@ export const getAllPizzas = () => async (dispatch:AppDispatch):Promise<void> => 
         dispatch({ type: 'GET_PIZZAS_FAIL', payload: err })
     }
 };
-export const addPizza = (pizza:pizzaI) => async (dispatch:AppDispatch):Promise<void> => {
+
+//Action to add pizza
+export const addPizza = (pizza: pizzaI) => async (dispatch: AppDispatch): Promise<void> => {
     dispatch({ type: 'ADD_PIZZAS_REQUEST' })
     try {
         console.log(pizza);
@@ -52,7 +56,9 @@ export const addPizza = (pizza:pizzaI) => async (dispatch:AppDispatch):Promise<v
         alert('Failed to add pizza.')
     }
 };
-export const getPizzaById = (pizzaId:any) => async (dispatch:AppDispatch) :Promise<void>=> {
+
+//Action to get pizza by id
+export const getPizzaById = (pizzaId: any) => async (dispatch: AppDispatch): Promise<void> => {
     dispatch({ type: 'GET_PIZZABYID_REQUEST' })
     try {
         const res = await axios.post('http://localhost:5000/api/pizzas/getpizzabyid', { pizzaId })
@@ -61,28 +67,33 @@ export const getPizzaById = (pizzaId:any) => async (dispatch:AppDispatch) :Promi
         dispatch({ type: 'GET_PIZZABYID_FAIL', payload: err })
     }
 };
-export const updatePizza = (updatedPizza:any) => async (dispatch:AppDispatch):Promise<void> => {
+
+//Action to update pizza using pizzaId
+export const updatePizza = (updatedPizza: pizzaUpdate) => async (dispatch: AppDispatch): Promise<void> => {
     dispatch({ type: 'UPDATE_PIZZABYID_REQUEST' })
-    
-const navigate= useNavigate() ;
+
+    // const navigate = useNavigate();
     try {
         const res = await axios.post('http://localhost:5000/api/pizzas/updatepizza', { updatedPizza })
         dispatch({ type: 'UPDATE_PIZZABYID_SUCCESS', payload: res.data })
-        //window.location.href = '/admin/pizzalist',
-        navigate('/admin/pizzalist');
+        // navigate('/admin/pizzalist');
+        alert('Pizza has been updated');
+        window.location.href = '/admin/pizzalist';
+
     } catch (err) {
         dispatch({ type: 'UPDATE_PIZZABYID_FAIL', payload: err })
     }
 };
 
-export const deletePizza = (pizzaId:String) => async (dispatch:AppDispatch):Promise<void> => {
-   
-const navigate= useNavigate() ;
+//Action to delete pizza using pizzaId
+export const deletePizza = (pizzaId: string) => async (dispatch: AppDispatch): Promise<void> => {
+
+    // const navigate = useNavigate();
     try {
         const res = await axios.post('http://localhost:5000/api/pizzas/deletepizza', { pizzaId })
         alert('Pizza Deleted Sucessfully');
-       // window.location.href = '/admin/pizzalist'
-        navigate('/admin/pizzalist');
+        window.location.href = '/admin/pizzalist';
+        // navigate('/admin/pizzalist');
         console.log(res)
 
     } catch (error) {

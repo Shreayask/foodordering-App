@@ -71,9 +71,8 @@ exports.getAllPizza = async (req:Request, res:Response):Promise<void> => {
 
 }
 
-
 exports.getPizzaById = async (req:Request, res:Response) => {
-    const pizzaId = req.body.pizzaId as String;
+    const pizzaId = req.body.pizzaId as string;
 
     try {
         const pizza = await knex('pizzas')
@@ -125,7 +124,7 @@ exports.updatePizza = async (req:Request, res:Response):Promise<void> => {
  * @param {*} res - response with sucess status code by removing the pizza from database or error status code with error message
  */
 exports.deletePizza = async (req:Request, res:Response):Promise<void> => {
-    const pizzaId = req.body.pizzaId as String;
+    const pizzaId = req.body.pizzaId as string;
     try {
          await knex('pizzas')
             .where({ id: pizzaId })

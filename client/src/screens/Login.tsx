@@ -2,28 +2,28 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
 import { useDispatch } from "react-redux";
-import {loginUser}  from "../actions/userAction";
+import { loginUser } from "../actions/userAction";
 import type { RootState, AppDispatch } from '../store';
 
 //type interface for user
 interface User {
 
   email: string,
-  password:string
+  password: string
 
 }
 // login form for users and admin
 
-const Login : React.FC = () => {
+const Login: React.FC = () => {
 
   const [email, setEmail] = useState<string>(""); //State for storing email of the user
   const [password, setPassword] = useState<string>(""); //State for storing password of the user
   const dispatch: AppDispatch = useDispatch(); //Initializing useDispatch() func
 
-  const loginHandler = (e : React.MouseEvent) :void => {
+  const loginHandler = (e: React.MouseEvent): void => {
     // Event handle for submitting user email & password
     e.preventDefault();
-    const user:User = { email, password };
+    const user: User = { email, password };
     //console.log(user);
     dispatch(loginUser(user));
   };
@@ -31,7 +31,7 @@ const Login : React.FC = () => {
 
   return (
     <>
-      <div className="container  pt-0">
+      <div className="container mt-4 pt-0">
         <div className="LoginSignUpContainer ">
           <div className="LoginSignUpBox">
             <form className="loginForm">
@@ -59,7 +59,7 @@ const Login : React.FC = () => {
                 type="submit"
                 value="Login"
                 className="loginBtn"
-                onClick ={loginHandler}
+                onClick={loginHandler}
                 data-testid="login-btn"
               />
               <div className="mt-4" style={{ justifyContent: "center" }}>

@@ -5,19 +5,19 @@ import "./css/cartscreen.css"
 import Cart from "../components/Cart";
 import { Link } from "react-router-dom";
 
+import { itemInterface, ItemVarients } from "src/actions/cartAction";
 
 // type interface for items
-interface itemInterface {
-
-    id: string,
-    name: string,
-    image: string,
-    quantity: number,
-    varient: string,
-    prices: any[],
-    pizza: number,
-    varients: string[]
-}
+// interface itemInterface {
+//     id: string,
+//     name: string,
+//     image: string,
+//     quantity: number,
+//     varient: string,
+//     prices: any[],
+//     pizza: number,
+//     varients: string[]
+// }
 const CartScreen: React.FC = () => {
     const cartState = useSelector((state: RootState) => state.cartReducer);
     const cartItems: itemInterface[] = cartState.cartItems;

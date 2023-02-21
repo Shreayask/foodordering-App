@@ -1,11 +1,10 @@
-
 import {Response, Request} from 'express';
 
 const { knex } = require('../config/db/index');
 
 const jwt = require('jsonwebtoken')
 // Register user
-const USER_TABLE_NAME : string= "users";
+const USER_TABLE_NAME = "users";
 
 /**
  * controller to register user
@@ -22,6 +21,7 @@ interface User {
     password:string
 
 }
+
 
 exports.registerUser = async (req:Request, res:Response):Promise<void> => {
     const { name, email, password } = req.body as {

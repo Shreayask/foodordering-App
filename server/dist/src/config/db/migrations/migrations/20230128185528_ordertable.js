@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-    return knex.schema.createTable('orders', (table) => {
-        table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
+    return knex.schema.createTable("orders", (table) => {
+        table.uuid("id").primary().defaultTo(knex.raw("gen_random_uuid()"));
         table.uuid("userid").references("users.id");
-        table.specificType('orderitems', 'json[]');
-        table.integer('orderAmount');
-        table.string('shippingAddress').notNullable();
-        table.string('phoneNumber').notNullable();
-        table.string('message').notNullable();
-        table.string('isDelivered').defaultTo('Pending');
+        table.specificType("orderitems", "json[]");
+        table.integer("orderAmount");
+        table.string("shippingAddress").notNullable();
+        table.string("phoneNumber").notNullable();
+        table.string("message").notNullable();
+        table.string("isDelivered").defaultTo("Pending");
         table.timestamps(true, true);
     });
 };
@@ -22,6 +22,6 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-    return knex.schema.dropTable('orders');
+    return knex.schema.dropTable("orders");
 };
 //# sourceMappingURL=20230128185528_ordertable.js.map

@@ -20,13 +20,42 @@ import { Request, Response, } from 'express';
 //     shippingAddress:String,
 //     message:String
 // }
+//interface for checkorder
+interface checkoutInfoInterface {
+    address: string,
+    number: number,
+    message: string,
+    subTotal: number
+}
+
+interface User {
+    id: string
+    name: string,
+    email: string,
+    password: string
+
+}
+
+
+interface itemInterface {
+    id: string,
+    name: string,
+    image: string,
+    quantity: number,
+    varient: string,
+    prices: {
+        [key:string]:number;
+    }[],
+    pizza: number,
+    varients: string[]
+}
 
 
 exports.placeOrder = async (req:Request, res:Response):Promise<void>=> {
     const { checkoutInfo, user, cartItems } = req.body as {
-        checkoutInfo: any;
-        user: any[];
-        cartItems: any[];
+        checkoutInfo: checkoutInfoInterface;
+        user: User[];
+        cartItems: itemInterface[];
       };
     const User = user[0]
     try {

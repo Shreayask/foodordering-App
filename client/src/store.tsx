@@ -6,44 +6,49 @@ import { getAllPizzaReducer, addPizzaReducer, getPizzaByIDReducer, updatePizzaBy
 import { cartReducer } from "./reducers/cartReducer";
 import { registerUserReducer, loginUserReducer, getAllUsersReducer } from './reducers/userReducer';
 import { placeOrderReducer, getUserOrdersReducer, allUserOrdersReducer } from './reducers/orderReducer';
-/*
-let currentUser: any = null;
-let cartItems = [];
-
-const currentUserValue: any = localStorage.getItem('currentUser');
-if (currentUserValue) {
-  currentUser = JSON.parse(currentUserValue);
-}
-
-const cartItemsValue = localStorage.getItem('cartItems');
-if (cartItemsValue) {
-  cartItems = JSON.parse(cartItemsValue);
-}*/
 
 const currentUser = localStorage.getItem('currentUser') ? JSON.parse(`${localStorage.getItem('currentUser')}`) : null
 const cartItems = localStorage.getItem('cartItems') ? JSON.parse(`${localStorage.getItem('cartItems')} `) : []
 
+
+interface userI {
+  id: string,
+  name: string,
+  email: string,
+  password: string,
+  isAdmin: boolean,
+  created_at: Date,
+  updated_at: Date
+}
+
+interface currentUserI {
+  success: boolean,
+  token: string,
+  user: userI[]
+}
+
 interface ILoginUserReducer {
-  currentUser: any[];
+  currentUser: currentUserI;
 }
 
+
+interface cartI {
+  name: string,
+  id: string,
+  image: string,
+  quantity: number,
+  varients: string,
+  prices: {
+    [key: string]: number;
+  }[]
+  pizza: number
+}
 interface ICartReducer {
-  cartItems: any[];
+  cartItems: cartI[];
 }
 
-interface IState {
-  getAllPizzaReducer: any;
-  registerUserReducer: any;
-  loginUserReducer: ILoginUserReducer;
-  cartReducer: ICartReducer;
-  addPizzaReducer: any;
-  getPizzaByIDReducer: any;
-  updatePizzaByIDReducer: any;
-  placeOrderReducer: any;
-  getUserOrdersReducer: any;
-  getAllUsersReducer: any;
-  allUserOrdersReducer: any;
-}
+
+
 
 const rootReducer = combineReducers({
   getAllPizzaReducer: getAllPizzaReducer,
@@ -72,6 +77,8 @@ const initialState: IinitialState = {
     cartItems: cartItems
   }
 };
+
+
 
 const middleware = [thunk];
 

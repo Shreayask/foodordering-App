@@ -5,17 +5,16 @@ import { HiMinusCircle, HiPlusCircle, HiTrash } from "react-icons/hi";
 import { addToCart, deleteFromCart } from "../actions/cartAction";
 import type { RootState, AppDispatch } from '../store';
 
-{/**  Dipalying items added to  cart by users */ }
-
 // type interface for items
 interface itemInterface {
-
   id: string,
   name: string,
   image: string,
   quantity: number,
   varient: string,
-  prices: any[],
+  prices: {
+    [key: string]: number;
+  }[],
   pizza: number,
   varients: string[]
 }
@@ -34,7 +33,7 @@ const Cart: React.FC<Props> = (props) => {
   const dispatch: AppDispatch = useDispatch();
 
   // getting cart state from reducers
-  const cartState = useSelector((state: RootState) => state.cartReducer);
+  // const cartState = useSelector((state: RootState) => state.cartReducer);
 
 
   return (

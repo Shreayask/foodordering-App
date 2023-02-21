@@ -5,7 +5,7 @@ import type { RootState, AppDispatch } from '../store';
 //interface for checkorder
 interface checkoutInfoInterface {
     address: string,
-    number: any,
+    number: number,
     message: string,
     subTotal: number
 }
@@ -23,7 +23,7 @@ interface userType {
     user: User[]
 }
 
-
+//Action to place order
 export const placeOrder = (checkoutInfo: checkoutInfoInterface) => async (dispatch: AppDispatch, getState: RootState): Promise<void> => {
     dispatch({ type: 'PLACE_ORDER_REQUEST' })
     const currentUser: userType = getState().loginUserReducer.currentUser
@@ -32,7 +32,7 @@ export const placeOrder = (checkoutInfo: checkoutInfoInterface) => async (dispat
     //const navigate= useNavigate() ;
     try {
 
-        const response = await axios.post('http://localhost:5000/api/orders/placeorder', { checkoutInfo, user, cartItems });
+        const response = await axios.post('http://localhost:5000/api/orders/placeorder', { checkoutInfo, user, cartItems }); //place order
         dispatch({ type: 'PLACE_ORDER_SUCCESS' });
         alert('Order has been placed.');
         window.location.href = "/orders";
@@ -46,15 +46,16 @@ export const placeOrder = (checkoutInfo: checkoutInfoInterface) => async (dispat
 
 }
 
+//Action to get users order
 export const getUserOrders = () => async (dispatch: AppDispatch, getState: RootState): Promise<void> => {
     const currentUser: userType = getState().loginUserReducer.currentUser;
-    const userid: String = currentUser.user[0].id;
+    const userid: string = currentUser.user[0].id;
     dispatch({
         type: 'USER_ORDER_REQUEST'
     })
     try {
         console.log('order', userid)
-        const response = await axios.post('http://localhost:5000/api/orders/getuserorder',
+        const response = await axios.post('http://localhost:5000/api/orders/getuserorder', //gets user order
             { userid: userid });
         console.log(response)
         dispatch({ type: 'USER_ORDER_SUCCESS', payload: response.data })
@@ -63,6 +64,8 @@ export const getUserOrders = () => async (dispatch: AppDispatch, getState: RootS
         dispatch({ type: 'USER_ORDER_FAIL', payload: error });
     }
 }
+
+//Action to get all use orders -- Admin
 export const getAllOrders = () => async (dispatch: AppDispatch, getState: RootState): Promise<void> => {
     // get all users orders 
     dispatch({

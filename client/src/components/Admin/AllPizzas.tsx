@@ -7,6 +7,7 @@ import { deletePizza, getAllPizzas } from "../../actions/pizzaAction";
 import { Link } from "react-router-dom";
 import type { RootState, AppDispatch } from '../../store';
 
+//Pizza INterface
 interface Pizza {
   id: string;
   name: string;
@@ -22,9 +23,9 @@ const AllPizzas = () => {
   const dispatch: AppDispatch = useDispatch();
   const pizzaState = useSelector((state: RootState) => state.getAllPizzaReducer);
   const { loading, pizzas, error } = pizzaState as {
-    loading: any,
+    loading: string,
     pizzas: Pizza[],
-    error: any
+    error: string
   };
 
   useEffect(() => {

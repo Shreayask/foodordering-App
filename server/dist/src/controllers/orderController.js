@@ -2,19 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // const router = express.Router();
 const { knex } = require('../config/db/index');
-// const Request = express.Request;
-// const Response = express.Response;
-/**
- * Controller to place order
- *
- * @param {*} req - request user info and cart items from the body
- * @param {*} res - response user with suceess or failure message
- */
-// interface checkoutInfoInterface {
-//     phoneNumber:number,
-//     shippingAddress:String,
-//     message:String
-// }
 exports.placeOrder = async (req, res) => {
     const { checkoutInfo, user, cartItems } = req.body;
     const User = user[0];

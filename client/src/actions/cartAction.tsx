@@ -1,32 +1,29 @@
 import type { RootState, AppDispatch } from '../store';
 
-// Interface type of pizza
-interface Ipizza {
-    id: string,
-    name: string,
-    image: string,
-    quantity: number,
-    varients: string[],
-    prices: any[],
-    pizza: number,
-    description: string,
-    varient: string
 
+export enum ItemVarients {
+    small = "small",
+    medium = "medium",
+    large = "large"
 }
-interface itemInterface {
 
+//Interface of pizza as an item
+export interface itemInterface {
     id: string,
     name: string,
     image: string,
     quantity: number,
     varient: string,
-    prices: any[],
+    prices: {
+        [key: string]: number;
+    }[],
     pizza: number,
     varients: string[]
 }
 
+//Action to add pizza to the cart
 export const addToCart = (pizza: itemInterface, quantity: number, varient: string) => (dispatch: AppDispatch, getState: RootState) => {
-    var cartItem = {
+    const cartItem = {
         name: pizza.name,
         id: pizza.id,
         image: pizza.image,
@@ -68,6 +65,7 @@ export const addToCart = (pizza: itemInterface, quantity: number, varient: strin
     }
 };
 
+//Action to delete pizza from cart
 export const deleteFromCart = (pizza: itemInterface) => (dispatch: AppDispatch, getState: RootState) => {
     dispatch({ type: "DELETE_FROM_CART", payload: pizza });
     localStorage.setItem(

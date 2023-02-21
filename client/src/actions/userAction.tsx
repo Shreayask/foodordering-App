@@ -11,21 +11,20 @@ export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 
 // interface type for register user
 interface User {
-   
     name: string,
     email: string,
-    password:string
+    password: string
 
 }
 // interface type for login user
 interface UserLogin {
-   
-    
     email: string,
-    password:string
+    password: string
 
 }
-export const registerUser = (user:User) => async (dispatch:AppDispatch):Promise<void> => {
+
+//Action for user registration
+export const registerUser = (user: User) => async (dispatch: AppDispatch): Promise<void> => {
     dispatch({ type: USER_REGISTER_REQUEST })
     try {
         if (!user.email || !user.email || !user.password) {
@@ -35,19 +34,18 @@ export const registerUser = (user:User) => async (dispatch:AppDispatch):Promise<
             const res = await axios.post("http://localhost:5000/api/users/register", user);
             dispatch({ type: USER_REGISTER_SUCCESS });
             alert('Registered Successfully');
-            window.location.href = "/";
+            window.location.href = "/";             //Change path to '/' after registration success
         }
     }
     catch (error) {
-
-
         dispatch({ type: USER_REGISTER_FAIL, payload: error });
         alert('Failed to register');
-        window.location.href = "/"
+        window.location.href = "/"     //Change path to '/' after registration failure
     }
 }
 
-export const loginUser = (user:UserLogin) => async (dispatch:AppDispatch) :Promise<void>=> {
+//Ation for user login
+export const loginUser = (user: UserLogin) => async (dispatch: AppDispatch): Promise<void> => {
     dispatch({ type: USER_LOGIN_REQUEST })
     try {
         console.log("i am action", user);
@@ -63,26 +61,28 @@ export const loginUser = (user:UserLogin) => async (dispatch:AppDispatch) :Promi
             dispatch({ type: USER_LOGIN_SUCCESS, payload: response.data });
             localStorage.setItem('currentUser', JSON.stringify(response.data))
             console.log('from actiom', response.data);
-            alert('Login Success');
-            window.location.href = "/"
+            alert('Login Success');                             //shows alert msg ('login success') if login sucess
+            window.location.href = "/"  //Change path to '/' after login success
         }
 
     } catch (error) {
         dispatch({ type: USER_LOGIN_FAIL, payload: error });
         console.log('from failed actiom', error);
-        alert(`Login Failed.`);
+        alert(`Login Failed.`);                                 //shows alert msg ('login failed') if login failed
 
     }
 }
 
-export const logoutUser = () => (dispatch:AppDispatch) => {
+//Action fot user logout
+export const logoutUser = () => (dispatch: AppDispatch) => {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('cartItems');
     alert('Logged out successfully.');
     window.location.href = "/"
 }
 
-export const getAllUsers = () => async (dispatch:AppDispatch):Promise<void> => {
+//Action for getting all user -- Admin
+export const getAllUsers = () => async (dispatch: AppDispatch): Promise<void> => {
     dispatch({ type: 'GET_USERS_REQUEST' })
     try {
         const res = await axios.get('http://localhost:5000/api/users/getallusers')
