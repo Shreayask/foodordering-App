@@ -5,14 +5,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-    return knex.schema.createTable('place', (table) => {
-        table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
-        table.string('name').notNullable();
-        table.specificType('varients', 'text[]');
-        table.specificType('prices', 'json[]');
-        table.string('category').notNullable();
-        table.string('image').notNullable();
-        table.string('description').notNullable();
+    return knex.schema.createTable("place", (table) => {
+        table.uuid("id").primary().defaultTo(knex.raw("gen_random_uuid()"));
+        table.string("name").notNullable();
+        table.specificType("varients", "text[]");
+        table.specificType("prices", "json[]");
+        table.string("category").notNullable();
+        table.string("image").notNullable();
+        table.string("description").notNullable();
         table.timestamps(true, true);
     });
 };
@@ -21,6 +21,6 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-    return knex.schema.dropTable('place');
+    return knex.schema.dropTable("place");
 };
 //# sourceMappingURL=20230130112723_test.js.map

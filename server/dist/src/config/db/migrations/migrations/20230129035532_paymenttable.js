@@ -5,12 +5,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-    return knex.schema.createTable('payment', (table) => {
-        table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
+    return knex.schema.createTable("payment", (table) => {
+        table.uuid("id").primary().defaultTo(knex.raw("gen_random_uuid()"));
         table.uuid("userid").references("users.id");
         table.uuid("orderid").references("orders.id");
-        table.integer('paidAmount');
-        table.boolean('isPaid').defaultTo(false);
+        table.integer("paidAmount");
+        table.boolean("isPaid").defaultTo(false);
         table.timestamps(true, true);
     });
 };
@@ -19,6 +19,6 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-    return knex.schema.dropTable('payment');
+    return knex.schema.dropTable("payment");
 };
 //# sourceMappingURL=20230129035532_paymenttable.js.map

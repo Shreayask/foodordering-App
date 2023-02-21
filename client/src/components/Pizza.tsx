@@ -4,7 +4,7 @@ import { addToCart } from "../actions/cartAction";
 import "./css/pizza.css";
 
 import type { RootState, AppDispatch } from '../store';
-import { pizzaI } from "src/actions/pizzaAction";
+
 
 export interface Ipizza {
   id: string,
